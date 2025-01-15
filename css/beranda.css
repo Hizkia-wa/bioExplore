@@ -1,0 +1,255 @@
+/* Reset */
+* {
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f0f9f4; /* Warna latar hijau muda */
+    color: #333;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  
+  /* Header Styles */
+  .header {
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  .logo {
+    font-size: 2.8rem;
+    color: #2a7f4f; /* Hijau gelap */
+    font-weight: bold;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: #4a7f61;
+    margin: 10px 0;
+  }
+  
+  .btn-start {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-start:hover {
+    background: linear-gradient(135deg, #388e3c, #43a047);
+    transform: scale(1.05);
+  }
+  
+  /* Decorative Leaves */
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: url('https://cdn-icons-png.flaticon.com/512/2917/2917995.png') no-repeat center/contain;
+    opacity: 0.3;
+    transform: rotate(-15deg);
+  }
+  
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: url('https://cdn-icons-png.flaticon.com/512/2917/2917995.png') no-repeat center/contain;
+    opacity: 0.3;
+    transform: rotate(15deg);
+  }
+  
+  /* Features Section */
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 20px;
+    padding: 0 10px;
+  }
+  
+  .feature-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #e0f2e9;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #66bb6a;
+  }
+  
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #43a047; /* Hijau utama */
+  }
+  
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #2a7f4f;
+    font-weight: bold;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Decorative Background Pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/green-fibers.png');
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  /* Tombol Mulai Belajar */
+.btn-start {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-start:hover {
+    background-color: #45a049;
+  }
+  
+  /* Popup Container */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden; /* Popup tidak terlihat saat awal */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+  }
+  
+  /* Popup Content */
+  .popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .popup-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #43a047;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .popup-button:hover {
+    background-color: #388e3c;
+  }
+  
+  /* Show Popup */
+  .popup.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 2.2rem;
+    }
+  
+    .tagline {
+      font-size: 1rem;
+    }
+  
+    .btn-start {
+      font-size: 0.9rem;
+      padding: 10px 25px;
+    }
+  
+    .feature-card {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 2rem;
+    }
+  
+    .tagline {
+      font-size: 0.9rem;
+    }
+  
+    .btn-start {
+      font-size: 0.8rem;
+      padding: 8px 20px;
+    }
+  
+    .features {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .feature-card {
+      width: 90%;
+    }
+  }
+  
