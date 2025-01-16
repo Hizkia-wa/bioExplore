@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="css/kuisnya.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h1>Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+        const questions = [
+        {
+                question: "Apa unit dasar kehidupan pada makhluk hidup?",
+                options: ["Sel", "Jaringan", "Organ", "Sistem organ", "Organisme"],
+                answer: "A",
+                explanation: "Sel adalah unit dasar kehidupan pada makhluk hidup."
+            },
+            {
+                question: "Jaringan apa yang berfungsi untuk pertumbuhan pada tumbuhan?",
+                options: ["Epidermis", "Meristem", "Parenkim", "Kolenkim", "Sklerenkim"],
+                answer: "B",
+                explanation: "Jaringan meristem adalah jaringan yang aktif membelah untuk pertumbuhan."
+            },
+            {
+                question: "Apa fungsi jaringan epidermis pada tumbuhan?",
+                options: ["Transportasi air", "Fotosintesis", "Perlindungan", "Penyimpanan", "Pertumbuhan"],
+                answer: "C",
+                explanation: "Jaringan epidermis berfungsi melindungi organ tumbuhan dari kerusakan dan kehilangan air."
+            },
+            {
+                question: "Jaringan apa yang berfungsi sebagai jaringan penguat pada tumbuhan?",
+                options: ["Kolenkim", "Parenkim", "Xilem", "Floem", "Meristem"],
+                answer: "A",
+                explanation: "Kolenkim adalah jaringan penguat pada tumbuhan muda."
+            },
+            {
+                question: "Apa fungsi jaringan xilem pada tumbuhan?",
+                options: ["Mengangkut air dan mineral", "Mengangkut hasil fotosintesis", "Penyimpanan cadangan makanan", "Fotosintesis", "Perlindungan"],
+                answer: "A",
+                explanation: "Xilem mengangkut air dan mineral dari akar ke seluruh bagian tumbuhan."
+            },
+            {
+                question: "Jaringan apa yang mengangkut hasil fotosintesis pada tumbuhan?",
+                options: ["Xilem", "Floem", "Parenkim", "Epidermis", "Meristem"],
+                answer: "B",
+                explanation: "Floem bertanggung jawab mengangkut hasil fotosintesis ke seluruh bagian tumbuhan."
+            },
+            {
+                question: "Apa fungsi utama jaringan parenkim pada tumbuhan?",
+                options: ["Perlindungan", "Transportasi", "Penyimpanan", "Pertumbuhan", "Fotosintesis"],
+                answer: "C",
+                explanation: "Jaringan parenkim berfungsi untuk penyimpanan cadangan makanan."
+            },
+            {
+                question: "Jaringan apa yang ditemukan pada kulit luar tumbuhan?",
+                options: ["Epidermis", "Meristem", "Parenkim", "Kolenkim", "Sklerenkim"],
+                answer: "A",
+                explanation: "Jaringan epidermis melapisi dan melindungi bagian luar tumbuhan."
+            },
+            {
+                question: "Apa jenis jaringan otot yang bekerja secara tidak sadar?",
+                options: ["Otot lurik", "Otot polos", "Otot jantung", "Otot rangka", "Tidak ada yang benar"],
+                answer: "B",
+                explanation: "Otot polos bekerja secara tidak sadar, misalnya di organ pencernaan."
+            },
+            {
+                question: "Di mana jaringan otot jantung ditemukan?",
+                options: ["Lengan", "Kaki", "Jantung", "Paru-paru", "Tulang belakang"],
+                answer: "C",
+                explanation: "Otot jantung hanya ditemukan di organ jantung."
+            },
+            {
+                question: "Apa fungsi jaringan epitel pada tubuh manusia?",
+                options: ["Perlindungan", "Pengangkutan", "Penyimpanan", "Pergerakan", "Penghubung"],
+                answer: "A",
+                explanation: "Jaringan epitel melindungi organ tubuh dari kerusakan dan infeksi."
+            },
+            {
+                question: "Jaringan apa yang berperan sebagai penghubung antar organ?",
+                options: ["Jaringan otot", "Jaringan saraf", "Jaringan ikat", "Jaringan epitel", "Jaringan darah"],
+                answer: "C",
+                explanation: "Jaringan ikat berfungsi menghubungkan dan menyokong organ tubuh."
+            },
+            {
+                question: "Apa komponen utama jaringan ikat pada tulang?",
+                options: ["Kolagen", "Elastin", "Kalsium", "Protein", "Darah"],
+                answer: "C",
+                explanation: "Tulang mengandung kalsium yang memberikan kekuatan dan struktur."
+            },
+            {
+                question: "Apa fungsi jaringan darah pada tubuh manusia?",
+                options: ["Penyimpanan energi", "Pengangkutan oksigen", "Perlindungan organ", "Penghubung", "Pertumbuhan"],
+                answer: "B",
+                explanation: "Jaringan darah mengangkut oksigen dan nutrisi ke seluruh tubuh."
+            },
+            {
+                question: "Apa jenis jaringan yang berfungsi untuk membawa impuls listrik?",
+                options: ["Jaringan epitel", "Jaringan otot", "Jaringan ikat", "Jaringan saraf", "Jaringan darah"],
+                answer: "D",
+                explanation: "Jaringan saraf membawa impuls listrik untuk koordinasi tubuh."
+            },
+            {
+                question: "Apa fungsi utama jaringan lemak?",
+                options: ["Mengangkut oksigen", "Perlindungan organ", "Penyimpanan energi", "Pertumbuhan", "Regenerasi"],
+                answer: "C",
+                explanation: "Jaringan lemak menyimpan energi dan melindungi organ dalam."
+            },
+            {
+                question: "Apa struktur dasar dari jaringan saraf?",
+                options: ["Sel otot", "Neuron", "Epidermis", "Kolagen", "Glukosa"],
+                answer: "B",
+                explanation: "Neuron adalah unit dasar dari jaringan saraf."
+            },
+            {
+                question: "Apa fungsi utama otot lurik?",
+                options: ["Pergerakan sadar", "Pergerakan tidak sadar", "Perlindungan", "Transportasi", "Penyimpanan energi"],
+                answer: "A",
+                explanation: "Otot lurik berfungsi untuk pergerakan yang dikendalikan secara sadar."
+            },
+            {
+                question: "Jaringan apa yang ditemukan di dinding pembuluh darah?",
+                options: ["Jaringan otot polos", "Jaringan epitel", "Jaringan lemak", "Jaringan tulang", "Jaringan saraf"],
+                answer: "A",
+                explanation: "Otot polos ditemukan di dinding pembuluh darah untuk membantu aliran darah."
+            },
+            {
+                question: "Apa peran utama jaringan sklerenkim pada tumbuhan?",
+                options: ["Perlindungan", "Pengangkutan", "Fotosintesis", "Penguatan", "Penyimpanan"],
+                answer: "D",
+                explanation: "Sklerenkim memberikan kekuatan dan dukungan mekanis pada tumbuhan."
+            }
+        ];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
