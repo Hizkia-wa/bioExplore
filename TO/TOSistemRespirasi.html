@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama alveolus dalam sistem respirasi manusia?",
+        options: ["Pertukaran gas", "Produksi enzim", "Penyimpanan oksigen", "Pengaturan pH darah", "Filtrasi udara"],
+        correct: 0,
+        explanation: "Alveolus adalah tempat utama untuk pertukaran gas antara oksigen dan karbon dioksida."
+    },
+    {
+        question: "Apa yang terjadi pada hemoglobin ketika berikatan dengan karbon monoksida?",
+        options: ["Meningkatkan afinitas terhadap oksigen", "Membentuk karboksihemoglobin", "Menurunkan kadar karbon dioksida dalam darah", "Mengubah struktur molekulnya", "Meningkatkan pH darah"],
+        correct: 1,
+        explanation: "Karbon monoksida membentuk karboksihemoglobin dengan hemoglobin, yang mencegah pengikatan oksigen."
+    },
+    {
+        question: "Apa yang menyebabkan pergeseran kurva disosiasi oksigen ke kanan?",
+        options: ["Peningkatan pH darah", "Penurunan suhu tubuh", "Peningkatan kadar karbon dioksida", "Penurunan kadar 2,3-BPG", "Penurunan tekanan parsial oksigen"],
+        correct: 2,
+        explanation: "Peningkatan kadar karbon dioksida, suhu, atau 2,3-BPG dapat menyebabkan kurva bergeser ke kanan."
+    },
+    {
+        question: "Apa yang dimaksud dengan volume tidal pada sistem respirasi?",
+        options: ["Volume udara yang dihirup dan dihembuskan dalam satu siklus pernapasan normal", "Volume udara maksimum yang dapat dihembuskan", "Volume udara tersisa setelah ekspirasi maksimum", "Volume udara yang dihirup pada inspirasi maksimum", "Volume udara yang tidak terlibat dalam pertukaran gas"],
+        correct: 0,
+        explanation: "Volume tidal adalah volume udara yang dihirup dan dihembuskan selama pernapasan normal."
+    },
+    {
+        question: "Bagaimana karbon dioksida sebagian besar diangkut dalam darah?",
+        options: ["Sebagai gas terlarut dalam plasma", "Sebagai karbaminohemoglobin", "Sebagai ion bikarbonat", "Berkaitan dengan protein plasma", "Berkaitan dengan lipid darah"],
+        correct: 2,
+        explanation: "Karbon dioksida sebagian besar diangkut dalam darah dalam bentuk ion bikarbonat (HCO3-)."
+    },
+    {
+        question: "Apa yang dimaksud dengan kapasitas vital paru-paru?",
+        options: ["Jumlah udara total yang dapat ditampung oleh paru-paru", "Volume udara yang dapat dihirup setelah ekspirasi normal", "Volume udara maksimum yang dapat dihembuskan setelah inspirasi maksimum", "Volume udara yang tidak pernah meninggalkan paru-paru", "Volume udara yang tidak digunakan dalam pertukaran gas"],
+        correct: 2,
+        explanation: "Kapasitas vital adalah volume udara maksimum yang dapat dihembuskan setelah inspirasi maksimum."
+    },
+    {
+        question: "Apa yang memicu refleks Hering-Breuer pada paru-paru?",
+        options: ["Peregangan berlebih pada paru-paru", "Penurunan kadar oksigen", "Peningkatan kadar karbon dioksida", "Penurunan pH darah", "Hiperventilasi"],
+        correct: 0,
+        explanation: "Refleks Hering-Breuer dipicu oleh peregangan berlebih pada paru-paru untuk mencegah kerusakan jaringan paru-paru."
+    },
+    {
+        question: "Apa peran surfaktan paru-paru?",
+        options: ["Meningkatkan resistensi udara", "Mengurangi tegangan permukaan alveolus", "Mempercepat pertukaran gas", "Mengurangi kapasitas residu fungsional", "Meningkatkan tekanan parsial oksigen"],
+        correct: 1,
+        explanation: "Surfaktan paru-paru mengurangi tegangan permukaan alveolus, mencegah kolapsnya alveolus."
+    },
+    {
+        question: "Apa yang menyebabkan hipoksia hipoksik?",
+        options: ["Penurunan hemoglobin", "Penurunan tekanan parsial oksigen di udara", "Keracunan karbon monoksida", "Gangguan pada sirkulasi darah", "Penurunan fungsi mitokondria"],
+        correct: 1,
+        explanation: "Hipoksia hipoksik disebabkan oleh rendahnya tekanan parsial oksigen di udara yang terhirup."
+    },
+    {
+        question: "Apa mekanisme utama yang mengontrol ritme pernapasan?",
+        options: ["Saraf simpatis", "Medula oblongata", "Reseptor mekanik paru-paru", "Saraf frenikus", "Pusat pernapasan di hipotalamus"],
+        correct: 1,
+        explanation: "Ritme pernapasan diatur oleh pusat pernapasan di medula oblongata."
+    },
+    {
+        question: "Apa efek utama dari hiperventilasi pada kadar pH darah?",
+        options: ["Menurunkan pH darah", "Meningkatkan pH darah", "Menurunkan kadar oksigen", "Meningkatkan kadar karbon dioksida", "Tidak ada perubahan pada pH darah"],
+        correct: 1,
+        explanation: "Hiperventilasi menyebabkan pengeluaran karbon dioksida berlebihan, sehingga meningkatkan pH darah (alkalosis)."
+    },
+    {
+        question: "Apa yang terjadi selama ekspirasi pasif?",
+        options: ["Kontraksi diafragma", "Relaksasi otot interkostal eksternal", "Kontraksi otot interkostal internal", "Penurunan tekanan intrapleural", "Peningkatan volume rongga toraks"],
+        correct: 1,
+        explanation: "Ekspirasi pasif terjadi karena relaksasi otot interkostal eksternal dan diafragma."
+    },
+    {
+        question: "Apa yang dimaksud dengan dead space pada sistem respirasi?",
+        options: ["Udara yang tidak mencapai alveolus", "Udara yang terperangkap dalam alveolus", "Udara yang digunakan untuk pertukaran gas", "Udara yang melewati trakea", "Udara yang tersimpan dalam bronkus"],
+        correct: 0,
+        explanation: "Dead space adalah volume udara yang tidak terlibat dalam pertukaran gas, seperti yang berada di saluran pernapasan."
+    },
+    {
+        question: "Apa yang menyebabkan asidosis respiratorik?",
+        options: ["Peningkatan ventilasi alveolar", "Penurunan kadar karbon dioksida", "Penurunan ventilasi alveolar", "Peningkatan pH darah", "Penurunan kadar oksigen dalam darah"],
+        correct: 2,
+        explanation: "Asidosis respiratorik terjadi ketika ventilasi alveolar tidak cukup untuk mengeluarkan karbon dioksida, sehingga kadar CO2 meningkat."
+    },
+    {
+        question: "Apa mekanisme adaptasi tubuh terhadap lingkungan dengan oksigen rendah?",
+        options: ["Penurunan produksi eritropoietin", "Peningkatan ventilasi alveolar", "Penurunan kadar hemoglobin", "Peningkatan tekanan parsial oksigen", "Penurunan produksi sel darah merah"],
+        correct: 1,
+        explanation: "Adaptasi terhadap oksigen rendah melibatkan peningkatan ventilasi dan produksi eritropoietin untuk meningkatkan sel darah merah."
+    },
+    {
+        question: "Apa yang dimaksud dengan kapasitas residu fungsional?",
+        options: ["Volume udara total yang ditampung paru-paru", "Volume udara yang tersisa di paru-paru setelah ekspirasi biasa", "Volume udara yang dihembuskan setelah inspirasi maksimum", "Volume udara yang tersisa setelah ekspirasi maksimum", "Volume udara yang dipertukarkan selama pernapasan normal"],
+        correct: 1,
+        explanation: "Kapasitas residu fungsional adalah volume udara yang tersisa di paru-paru setelah ekspirasi biasa."
+    },
+    {
+        question: "Apa pengaruh peningkatan kadar 2,3-BPG pada hemoglobin?",
+        options: ["Meningkatkan afinitas terhadap oksigen", "Menurunkan afinitas terhadap oksigen", "Meningkatkan kadar karbon dioksida", "Menurunkan kadar pH darah", "Meningkatkan saturasi oksigen di paru-paru"],
+        correct: 1,
+        explanation: "Peningkatan kadar 2,3-BPG menurunkan afinitas hemoglobin terhadap oksigen, mempermudah pelepasan oksigen ke jaringan."
+    },
+    {
+        question: "Apa yang dimaksud dengan hiperkapnia?",
+        options: ["Peningkatan kadar oksigen dalam darah", "Penurunan kadar karbon dioksida dalam darah", "Peningkatan kadar karbon dioksida dalam darah", "Penurunan saturasi hemoglobin", "Peningkatan tekanan parsial oksigen"],
+        correct: 2,
+        explanation: "Hiperkapnia adalah kondisi di mana kadar karbon dioksida dalam darah meningkat."
+    },
+    {
+        question: "Apa efek utama dari refleks batuk?",
+        options: ["Meningkatkan ventilasi alveolar", "Menghilangkan partikel dari saluran pernapasan", "Meningkatkan tekanan intrapleural", "Mengurangi resistensi saluran napas", "Meningkatkan kadar oksigen dalam darah"],
+        correct: 1,
+        explanation: "Refleks batuk berfungsi untuk menghilangkan partikel atau iritasi dari saluran pernapasan."
+    },
+    {
+        question: "Apa yang memicu produksi eritropoietin?",
+        options: ["Peningkatan kadar oksigen", "Penurunan tekanan parsial oksigen", "Peningkatan kadar karbon dioksida", "Penurunan pH darah", "Peningkatan saturasi hemoglobin"],
+        correct: 1,
+        explanation: "Produksi eritropoietin dipicu oleh penurunan tekanan parsial oksigen, seperti pada kondisi hipoksia."
+    }
+];
+
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
