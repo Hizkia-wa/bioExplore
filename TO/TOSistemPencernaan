@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa nama bagian sistem pencernaan yang bertanggung jawab untuk penyerapan nutrisi?",
+        options: ["Esophagus", "Lambung", "Usus Halus", "Usus Besar", "Rektum"],
+        correct: 2,
+        explanation: "Usus halus adalah bagian pencernaan utama yang bertanggung jawab untuk penyerapan nutrisi."
+    },
+    {
+        question: "Enzim apa yang diproduksi oleh kelenjar ludah untuk memulai pencernaan karbohidrat?",
+        options: ["Amilase", "Pepsin", "Lipase", "Tripsin", "Sukrase"],
+        correct: 0,
+        explanation: "Amilase adalah enzim yang diproduksi oleh kelenjar ludah yang memulai proses pencernaan karbohidrat."
+    },
+    {
+        question: "Bagian manakah dari sistem pencernaan yang bertanggung jawab untuk mengubah makanan menjadi asam lambung?",
+        options: ["Lambung", "Usus Halus", "Hati", "Pankreas", "Kerongkongan"],
+        correct: 0,
+        explanation: "Lambung bertanggung jawab untuk mengubah makanan menjadi asam lambung yang membantu proses pencernaan."
+    },
+    {
+        question: "Proses yang terjadi di lambung, di mana makanan dicampur dengan asam dan enzim disebut?",
+        options: ["Peristaltik", "Pengemulsian", "Chyme", "Defekasi", "Pencernaan mekanik"],
+        correct: 2,
+        explanation: "Proses pembentukan makanan yang tercampur dengan asam lambung disebut chyme."
+    },
+    {
+        question: "Bagian usus halus yang menyerap nutrisi seperti vitamin dan mineral adalah?",
+        options: ["Duodenum", "Jejunum", "Ileum", "Caecum", "Pylorus"],
+        correct: 1,
+        explanation: "Bagian Jejunum di usus halus bertanggung jawab untuk penyerapan nutrisi seperti vitamin dan mineral."
+    },
+    {
+        question: "Apa nama enzim pencernaan yang diproduksi oleh pankreas untuk mencerna protein?",
+        options: ["Amilase", "Pepsin", "Tripsin", "Lipase", "Nuklease"],
+        correct: 2,
+        explanation: "Tripsin adalah enzim pencernaan yang diproduksi oleh pankreas untuk mencerna protein."
+    },
+    {
+        question: "Apa yang dimaksud dengan pencernaan mekanik?",
+        options: ["Perubahan kimia dalam makanan", "Pemecahan makanan dengan enzim", "Proses pemisahan nutrisi dalam darah", "Penghancuran fisik makanan", "Pemisahan antara makanan dan air"],
+        correct: 3,
+        explanation: "Pencernaan mekanik adalah proses penghancuran fisik makanan untuk mempermudah proses pencernaan kimia."
+    },
+    {
+        question: "Fungsi utama usus besar dalam sistem pencernaan adalah?",
+        options: ["Penyerapan air dan garam", "Pencernaan makanan", "Penyimpanan enzim", "Pembuatan asam lambung", "Penyimpanan empedu"],
+        correct: 0,
+        explanation: "Usus besar berfungsi untuk menyerap air dan garam dari sisa makanan yang tidak dicerna."
+    },
+    {
+        question: "Apa yang dimaksud dengan defekasi?",
+        options: ["Proses penyerapan nutrisi", "Proses pencernaan protein", "Proses pembuangan sisa makanan", "Proses pembentukan chyme", "Proses penghancuran makanan dengan gigi"],
+        correct: 2,
+        explanation: "Defekasi adalah proses pembuangan sisa-sisa makanan yang tidak dapat dicerna oleh tubuh melalui anus."
+    },
+    {
+        question: "Apa nama proses transportasi makanan yang menggerakkan makanan melalui kerongkongan?",
+        options: ["Peristaltik", "Refleks", "Segregasi", "Motilitas", "Absorpsi"],
+        correct: 0,
+        explanation: "Peristaltik adalah proses transportasi makanan melalui kerongkongan dan saluran pencernaan lainnya."
+    },
+    {
+        question: "Di mana pankreas melepaskan enzim pencernaannya ke dalam saluran pencernaan?",
+        options: ["Lambung", "Usus Halus", "Usus Besar", "Hati", "Kerongkongan"],
+        correct: 1,
+        explanation: "Pankreas melepaskan enzim pencernaannya ke dalam usus halus untuk membantu pencernaan lebih lanjut."
+    },
+    {
+        question: "Bagaimana cara tubuh menyerap nutrisi dari usus halus?",
+        options: ["Melalui peristaltik", "Melalui dinding usus halus", "Melalui mulut", "Melalui kerongkongan", "Melalui hati"],
+        correct: 1,
+        explanation: "Nutrisi diserap melalui dinding usus halus yang dilapisi oleh villi untuk meningkatkan luas permukaan penyerapan."
+    },
+    {
+        question: "Hormon apa yang diproduksi oleh sel-sel lambung untuk merangsang sekresi asam lambung?",
+        options: ["Insulin", "Gastrin", "Sekretin", "Cekelin", "Kolesistokinin"],
+        correct: 1,
+        explanation: "Gastrin adalah hormon yang diproduksi oleh sel-sel lambung yang merangsang sekresi asam lambung."
+    },
+    {
+        question: "Apa yang dimaksud dengan chylomicron?",
+        options: ["Senyawa pengemulsi lemak", "Partikel yang membawa nutrisi", "Enzim pencernaan", "Senyawa pencerna karbohidrat", "Partikel lemak yang diserap usus halus"],
+        correct: 4,
+        explanation: "Chylomicron adalah partikel lemak yang diserap oleh usus halus dan dibawa oleh sistem limfatik ke seluruh tubuh."
+    },
+    {
+        question: "Bagian mana yang bertanggung jawab untuk pencernaan karbohidrat dalam usus halus?",
+        options: ["Duodenum", "Jejunum", "Ileum", "Caecum", "Pylorus"],
+        correct: 0,
+        explanation: "Duodenum adalah bagian usus halus pertama yang terlibat dalam pencernaan karbohidrat dengan bantuan enzim."
+    },
+    {
+        question: "Apa fungsi utama hati dalam sistem pencernaan?",
+        options: ["Memproduksi air liur", "Menghasilkan empedu", "Mencerna makanan", "Menetralkan asam lambung", "Menjadi tempat penyimpanan makanan"],
+        correct: 1,
+        explanation: "Hati menghasilkan empedu yang dibutuhkan untuk mencerna lemak dalam usus."
+    },
+    {
+        question: "Apa yang dimaksud dengan pencernaan kimia?",
+        options: ["Pencernaan oleh enzim", "Penghancuran fisik makanan", "Proses pembuangan sisa makanan", "Proses penyerapan nutrisi", "Pemisahan lemak dan air"],
+        correct: 0,
+        explanation: "Pencernaan kimia adalah proses penguraian makanan menggunakan enzim atau asam lambung untuk mengubahnya menjadi bentuk yang bisa diserap tubuh."
+    },
+    {
+        question: "Apa yang terjadi jika sistem pencernaan tidak dapat menyerap vitamin B12 dengan benar?",
+        options: ["Defisiensi energi", "Anemia pernisiosa", "Penyakit jantung", "Gangguan pencernaan", "Dehidrasi"],
+        correct: 1,
+        explanation: "Kekurangan vitamin B12 dapat menyebabkan anemia pernisiosa, yaitu gangguan pada pembentukan sel darah merah."
+    },
+    {
+        question: "Dimana empedu disimpan sebelum dilepaskan ke dalam usus halus?",
+        options: ["Hati", "Lambung", "Pankreas", "Kandung Empedu", "Usus Besar"],
+        correct: 3,
+        explanation: "Empedu disimpan dalam kantong empedu sebelum dilepaskan ke dalam usus halus untuk membantu pencernaan lemak."
+    },
+    {
+        question: "Apa yang dimaksud dengan absorpsi dalam sistem pencernaan?",
+        options: ["Proses pencernaan makanan", "Proses pemecahan makanan menjadi bagian kecil", "Proses penyerapan nutrisi ke dalam darah", "Proses pengeluaran limbah", "Proses pembentukan asam lambung"],
+        correct: 2,
+        explanation: "Absorpsi adalah proses penyerapan nutrisi yang telah dicerna ke dalam darah atau sistem limfatik."
+    },
+    {
+        question: "Apakah fungsi utama dari kelenjar ludah dalam sistem pencernaan?",
+        options: ["Memproduksi asam lambung", "Mencerna lemak", "Membantu pencernaan karbohidrat", "Menyerap air", "Menyimpan makanan"],
+        correct: 2,
+        explanation: "Kelenjar ludah menghasilkan enzim amilase yang membantu pencernaan karbohidrat dalam mulut."
+    }
+];
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
