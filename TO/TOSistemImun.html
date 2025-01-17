@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama sel T helper dalam sistem imun adaptif?",
+        options: [
+            "Menyintesis antibodi",
+            "Menyajikan antigen",
+            "Mengaktifkan sel B dan sel T lainnya",
+            "Menghancurkan sel yang terinfeksi virus",
+            "Menghambat respons imun"
+        ],
+        correct: 2,
+        explanation: "Sel T helper mengaktifkan sel B untuk memproduksi antibodi dan mengaktifkan sel T sitotoksik."
+    },
+    {
+        question: "Apa peran utama makrofag dalam sistem imun bawaan?",
+        options: [
+            "Produksi antibodi",
+            "Fagositosis patogen",
+            "Mengaktifkan sel T",
+            "Memori imun",
+            "Menghambat inflamasi"
+        ],
+        correct: 1,
+        explanation: "Makrofag adalah sel fagosit yang menelan dan mencerna patogen serta menghasilkan sinyal inflamasi."
+    },
+    {
+        question: "Apa yang terjadi jika seseorang mengalami defisiensi IgA?",
+        options: [
+            "Meningkatkan risiko infeksi saluran mukosa",
+            "Tidak dapat memproduksi antibodi",
+            "Menurunkan jumlah sel T helper",
+            "Mengurangi produksi makrofag",
+            "Meningkatkan aktivitas NK (natural killer) cells"
+        ],
+        correct: 0,
+        explanation: "IgA adalah antibodi utama pada mukosa dan melindungi saluran pernapasan serta gastrointestinal dari infeksi."
+    },
+    {
+        question: "Apa yang dimaksud dengan MHC (Major Histocompatibility Complex)?",
+        options: [
+            "Protein untuk memproduksi antibodi",
+            "Reseptor pada sel B",
+            "Molekul yang menyajikan antigen pada sel T",
+            "Enzim yang menghancurkan patogen",
+            "Komponen komplement"
+        ],
+        correct: 2,
+        explanation: "MHC adalah molekul yang menyajikan fragmen antigen kepada sel T untuk menginisiasi respons imun."
+    },
+    {
+        question: "Apa mekanisme utama yang digunakan oleh sel NK (natural killer) untuk membunuh sel target?",
+        options: [
+            "Fagositosis",
+            "Produksi antibodi",
+            "Pelepasan perforin dan granzim",
+            "Menghambat MHC",
+            "Menginduksi inflamasi"
+        ],
+        correct: 2,
+        explanation: "Sel NK membunuh sel target dengan melepaskan perforin untuk membuat pori dan granzim untuk menginduksi apoptosis."
+    },
+    {
+        question: "Apa fungsi utama sel dendritik dalam sistem imun?",
+        options: [
+            "Fagositosis patogen",
+            "Produksi antibodi",
+            "Menyajikan antigen kepada sel T",
+            "Menghancurkan sel kanker",
+            "Menghambat inflamasi"
+        ],
+        correct: 2,
+        explanation: "Sel dendritik adalah APC (antigen-presenting cells) yang sangat efisien dalam menyajikan antigen kepada sel T untuk memulai respons imun adaptif."
+    },
+    {
+        question: "Apa yang dimaksud dengan hipersensitivitas tipe I?",
+        options: [
+            "Reaksi autoimun terhadap jaringan sendiri",
+            "Reaksi alergi yang dimediasi oleh IgE",
+            "Reaksi penolakan transplantasi",
+            "Reaksi terhadap antigen kompleks imun",
+            "Reaksi inflamasi kronis"
+        ],
+        correct: 1,
+        explanation: "Hipersensitivitas tipe I adalah reaksi alergi yang cepat, seperti anafilaksis, yang dimediasi oleh IgE."
+    },
+    {
+        question: "Apa peran utama komplemen dalam sistem imun bawaan?",
+        options: [
+            "Meningkatkan produksi antibodi",
+            "Menyajikan antigen",
+            "Meningkatkan fagositosis dan menghancurkan patogen",
+            "Menginduksi sel B",
+            "Menghancurkan sel T"
+        ],
+        correct: 2,
+        explanation: "Sistem komplemen meningkatkan fagositosis melalui opsonisasi dan dapat membentuk kompleks serangan membran untuk menghancurkan patogen."
+    },
+    {
+        question: "Apa yang dimaksud dengan imunodefisiensi sekunder?",
+        options: [
+            "Kondisi genetik yang memengaruhi sistem imun",
+            "Gangguan yang diakibatkan oleh infeksi atau faktor eksternal",
+            "Produksi antibodi yang berlebihan",
+            "Penurunan fungsi sel T helper",
+            "Penolakan transplantasi"
+        ],
+        correct: 1,
+        explanation: "Imunodefisiensi sekunder terjadi akibat faktor eksternal seperti infeksi HIV, malnutrisi, atau terapi imunosupresif."
+    },
+    {
+        question: "Bagaimana vaksin dapat melindungi individu dari penyakit?",
+        options: [
+            "Menghilangkan patogen secara langsung",
+            "Menginduksi memori imun terhadap patogen",
+            "Meningkatkan produksi makrofag",
+            "Menghambat replikasi virus",
+            "Menginduksi hipersensitivitas"
+        ],
+        correct: 1,
+        explanation: "Vaksin bekerja dengan menginduksi memori imun melalui paparan terhadap antigen patogen yang dilemahkan atau dimodifikasi."
+    },
+    {
+        question: "Apa yang dimaksud dengan sel memori dalam sistem imun adaptif?",
+        options: [
+            "Sel yang langsung menghancurkan patogen",
+            "Sel yang menyimpan informasi tentang antigen untuk respons lebih cepat di masa depan",
+            "Sel yang memproduksi antibodi",
+            "Sel yang menghambat respons imun",
+            "Sel yang memfagositosis antigen"
+        ],
+        correct: 1,
+        explanation: "Sel memori adalah bagian penting dari sistem imun adaptif yang memungkinkan respons cepat dan efektif terhadap infeksi ulang."
+    },
+    {
+        question: "Apa yang dimaksud dengan toleransi imun?",
+        options: [
+            "Kemampuan sistem imun untuk menyerang patogen",
+            "Kemampuan sistem imun untuk tidak menyerang jaringan tubuh sendiri",
+            "Reaksi autoimun terhadap antigen tubuh",
+            "Produksi antibodi yang berlebihan",
+            "Penurunan fungsi sel T helper"
+        ],
+        correct: 1,
+        explanation: "Toleransi imun adalah mekanisme yang mencegah sistem imun menyerang sel dan jaringan tubuh sendiri."
+    },
+    {
+        question: "Bagaimana HIV memengaruhi sistem imun tubuh?",
+        options: [
+            "Dengan menghancurkan sel B",
+            "Dengan menginfeksi dan menghancurkan sel T helper",
+            "Dengan menghambat produksi antibodi",
+            "Dengan meningkatkan respons inflamasi",
+            "Dengan menurunkan produksi komplemen"
+        ],
+        correct: 1,
+        explanation: "HIV menyerang dan menghancurkan sel T helper, yang melemahkan sistem imun tubuh secara keseluruhan."
+    },
+    {
+        question: "Apa yang dimaksud dengan autoimunitas?",
+        options: [
+            "Respon imun terhadap antigen asing",
+            "Respon imun yang menyerang jaringan tubuh sendiri",
+            "Produksi antibodi berlebihan",
+            "Penurunan fungsi sistem imun",
+            "Peningkatan aktivitas sel NK"
+        ],
+        correct: 1,
+        explanation: "Autoimunitas adalah kondisi di mana sistem imun tubuh menyerang jaringan tubuh sendiri sebagai respons yang salah arah."
+    },
+    {
+        question: "Apa peran utama sel plasma dalam sistem imun?",
+        options: [
+            "Mengaktifkan sel T",
+            "Menghasilkan antibodi",
+            "Menghancurkan patogen secara langsung",
+            "Menghambat inflamasi",
+            "Menyajikan antigen"
+        ],
+        correct: 1,
+        explanation: "Sel plasma adalah sel B yang berdiferensiasi dan bertanggung jawab untuk memproduksi antibodi spesifik."
+    },
+    {
+        question: "Apa yang menyebabkan penolakan transplantasi organ?",
+        options: [
+            "Produksi antibodi yang berlebihan",
+            "Respons imun terhadap antigen MHC donor",
+            "Infeksi pada organ transplantasi",
+            "Penurunan fungsi sel T",
+            "Penurunan produksi komplemen"
+        ],
+        correct: 1,
+        explanation: "Penolakan transplantasi terjadi karena sistem imun penerima mengenali antigen MHC donor sebagai benda asing dan menyerangnya."
+    },
+    {
+        question: "Apa yang dimaksud dengan imunisasi pasif?",
+        options: [
+            "Pemberian vaksin untuk membentuk memori imun",
+            "Transfer antibodi siap pakai dari luar tubuh",
+            "Produksi antibodi oleh tubuh sendiri",
+            "Penurunan aktivitas sel imun",
+            "Penghambatan respons inflamasi"
+        ],
+        correct: 1,
+        explanation: "Imunisasi pasif melibatkan transfer antibodi dari luar, seperti dari ibu ke bayi melalui ASI atau melalui injeksi antibodi."
+    },
+    {
+        question: "Apa perbedaan antara antigen dan epitop?",
+        options: [
+            "Antigen adalah bagian kecil dari epitop",
+            "Epitop adalah bagian spesifik dari antigen yang dikenali oleh sistem imun",
+            "Antigen adalah molekul asing, sedangkan epitop adalah sel imun",
+            "Epitop adalah jenis antibodi",
+            "Antigen hanya ditemukan pada bakteri"
+        ],
+        correct: 1,
+        explanation: "Epitop adalah bagian spesifik dari antigen yang dikenali oleh reseptor sel imun atau antibodi."
+    },
+    {
+        question: "Apa mekanisme utama yang digunakan oleh sel T sitotoksik untuk menghancurkan sel yang terinfeksi?",
+        options: [
+            "Fagositosis",
+            "Produksi antibodi",
+            "Pelepasan perforin dan granzim",
+            "Menginduksi inflamasi",
+            "Menghambat MHC"
+        ],
+        correct: 2,
+        explanation: "Sel T sitotoksik melepaskan perforin dan granzim untuk menghancurkan sel yang terinfeksi dengan cara menginduksi apoptosis."
+    }
+];
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
