@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama dari katup semilunar pada jantung?",
+        options: ["Mengatur aliran darah ke arteri koroner", "Mencegah darah mengalir kembali ke ventrikel", "Mengatur detak jantung", "Menghubungkan atrium dan ventrikel", "Menghasilkan impuls listrik"],
+        correct: 1,
+        explanation: "Katup semilunar mencegah darah yang sudah dipompa keluar dari jantung mengalir kembali ke ventrikel."
+    },
+    {
+        question: "Dalam siklus jantung, apa yang terjadi selama fase diastole?",
+        options: ["Ventrikel berkontraksi", "Atrium berkontraksi", "Katup semilunar terbuka", "Jantung beristirahat dan terisi darah", "Tekanan darah mencapai puncaknya"],
+        correct: 3,
+        explanation: "Diastole adalah fase di mana otot jantung rileks dan jantung terisi dengan darah."
+    },
+    {
+        question: "Apa komponen utama dari plasma darah?",
+        options: ["Protein", "Air", "Glukosa", "Ion mineral", "Lemak"],
+        correct: 1,
+        explanation: "Plasma darah terutama terdiri dari air (sekitar 90%), yang berfungsi sebagai pelarut untuk berbagai zat."
+    },
+    {
+        question: "Apa peran hemoglobin dalam sistem peredaran darah?",
+        options: ["Mengangkut nutrisi", "Mengangkut oksigen", "Mengangkut hormon", "Membantu pembekuan darah", "Mengatur tekanan darah"],
+        correct: 1,
+        explanation: "Hemoglobin adalah protein dalam sel darah merah yang bertanggung jawab untuk mengangkut oksigen dari paru-paru ke jaringan tubuh."
+    },
+    {
+        question: "Apa nama pembuluh darah yang membawa darah dari tubuh ke jantung?",
+        options: ["Arteri", "Vena", "Kapiler", "Aorta", "Arteriol"],
+        correct: 1,
+        explanation: "Vena membawa darah yang kekurangan oksigen dari tubuh kembali ke jantung."
+    },
+    {
+        question: "Apa yang memicu kontraksi pertama kali dalam siklus jantung?",
+        options: ["Simpul AV", "Simpul SA", "Bundel His", "Serabut Purkinje", "Katup Mitral"],
+        correct: 1,
+        explanation: "Simpul SA adalah pacemaker alami jantung yang memulai impuls listrik untuk kontraksi."
+    },
+    {
+        question: "Apa yang dimaksud dengan hematopoiesis?",
+        options: ["Proses pembekuan darah", "Produksi sel darah", "Penghancuran sel darah merah", "Transportasi oksigen", "Regenerasi jaringan otot"],
+        correct: 1,
+        explanation: "Hematopoiesis adalah proses pembentukan sel darah di sumsum tulang."
+    },
+    {
+        question: "Di mana terjadi pertukaran gas dalam sistem peredaran darah?",
+        options: ["Di arteri", "Di vena", "Di kapiler", "Di aorta", "Di atrium"],
+        correct: 2,
+        explanation: "Pertukaran gas terjadi di kapiler, di mana oksigen dan karbon dioksida bertukar antara darah dan jaringan."
+    },
+    {
+        question: "Apa fungsi utama dari sistem limfatik dalam sistem peredaran darah?",
+        options: ["Mengangkut oksigen", "Membantu pembekuan darah", "Mengembalikan cairan jaringan ke darah", "Mengatur tekanan darah", "Menghasilkan sel darah merah"],
+        correct: 2,
+        explanation: "Sistem limfatik mengumpulkan cairan jaringan yang berlebih dan mengembalikannya ke sistem peredaran darah."
+    },
+    {
+        question: "Apa peran platelet dalam darah?",
+        options: ["Mengangkut oksigen", "Membantu pembekuan darah", "Mengangkut karbon dioksida", "Mengatur tekanan darah", "Menghasilkan energi"],
+        correct: 1,
+        explanation: "Platelet (trombosit) berperan penting dalam proses pembekuan darah untuk mencegah pendarahan."
+    },
+    {
+        question: "Apa yang dimaksud dengan vasodilatasi?",
+        options: ["Penyempitan pembuluh darah", "Pelebaran pembuluh darah", "Peningkatan tekanan darah", "Penurunan detak jantung", "Penumpukan plak di arteri"],
+        correct: 1,
+        explanation: "Vasodilatasi adalah pelebaran pembuluh darah yang meningkatkan aliran darah."
+    },
+    {
+        question: "Apa nama arteri terbesar dalam tubuh manusia?",
+        options: ["Arteri pulmonalis", "Aorta", "Arteri koroner", "Arteri karotid", "Arteri renalis"],
+        correct: 1,
+        explanation: "Aorta adalah arteri terbesar dalam tubuh, yang membawa darah dari jantung ke seluruh tubuh."
+    },
+    {
+        question: "Apa yang menyebabkan penyakit anemia?",
+        options: ["Kekurangan sel darah merah", "Kelebihan hemoglobin", "Infeksi bakteri", "Kerusakan pembuluh darah", "Kekurangan trombosit"],
+        correct: 0,
+        explanation: "Anemia disebabkan oleh kekurangan sel darah merah atau hemoglobin yang cukup untuk mengangkut oksigen."
+    },
+    {
+        question: "Apa yang dimaksud dengan siklus sistemik dalam sirkulasi darah?",
+        options: ["Perjalanan darah dari jantung ke paru-paru", "Perjalanan darah dari jantung ke seluruh tubuh", "Perjalanan darah dari arteri ke vena", "Pertukaran gas di kapiler", "Pengangkutan nutrisi ke sel"],
+        correct: 1,
+        explanation: "Siklus sistemik adalah perjalanan darah yang mengedarkan oksigen dari jantung ke seluruh tubuh."
+    },
+    {
+        question: "Apa fungsi vena pulmonalis?",
+        options: ["Membawa darah kaya oksigen ke jantung", "Mengangkut darah kaya karbon dioksida ke paru-paru", "Mengangkut nutrisi ke jantung", "Mengatur tekanan darah", "Mengangkut hormon ke otak"],
+        correct: 0,
+        explanation: "Vena pulmonalis membawa darah yang kaya oksigen dari paru-paru kembali ke atrium kiri jantung."
+    },
+    {
+        question: "Apa penyebab utama hipertensi?",
+        options: ["Infeksi virus", "Obstruksi vena", "Tekanan darah tinggi kronis", "Kerusakan hemoglobin", "Gangguan fungsi limfatik"],
+        correct: 2,
+        explanation: "Hipertensi disebabkan oleh tekanan darah tinggi kronis yang memberi tekanan berlebih pada dinding pembuluh darah."
+    },
+    {
+        question: "Apa yang terjadi jika katup mitral gagal berfungsi?",
+        options: ["Darah tidak mengalir ke paru-paru", "Darah mengalir kembali ke atrium kiri", "Darah tidak mencapai ventrikel", "Darah mengalir langsung ke arteri pulmonalis", "Darah berhenti mengalir ke vena"],
+        correct: 1,
+        explanation: "Jika katup mitral gagal berfungsi, darah dapat mengalir kembali ke atrium kiri, menyebabkan beban kerja tambahan pada jantung."
+    },
+    {
+        question: "Apa nama protein dalam darah yang membantu pembekuan?",
+        options: ["Albumin", "Fibrinogen", "Hemoglobin", "Myoglobin", "Keratin"],
+        correct: 1,
+        explanation: "Fibrinogen adalah protein yang membantu pembekuan darah dengan membentuk jaringan fibrin."
+    },
+    {
+        question: "Apa nama pembuluh darah yang terkecil dalam tubuh manusia?",
+        options: ["Arteriol", "Venula", "Kapiler", "Aorta", "Vena cava"],
+        correct: 2,
+        explanation: "Kapiler adalah pembuluh darah terkecil yang memungkinkan pertukaran antara darah dan jaringan."
+    },
+    {
+        question: "Apa yang dimaksud dengan hematokrit?",
+        options: ["Rasio sel darah merah dalam darah", "Kandungan hemoglobin dalam darah", "Jumlah platelet per mikroliter darah", "Jumlah leukosit dalam darah", "Volume total plasma darah"],
+        correct: 0,
+        explanation: "Hematokrit adalah persentase volume darah yang terdiri dari sel darah merah."
+    }
+];
+
+
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
