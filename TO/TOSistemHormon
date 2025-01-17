@@ -66,130 +66,124 @@
     <script>
 const questions = [
     {
-        question: "Apa yang dimaksud dengan sistem muskuloskeletal pada manusia?",
-        options: ["Sistem otot dan tulang", "Sistem saraf dan otak", "Sistem pencernaan", "Sistem kardiovaskular", "Sistem limfatik"],
+        question: "Apa yang dimaksud dengan hormon?",
+        options: ["Senyawa kimia yang mengatur fungsi tubuh", "Sel tubuh yang mengatur metabolisme", "Bagian dari sistem saraf", "Senyawa yang memproduksi energi", "Jaringan yang menyimpan informasi genetik"],
         correct: 0,
-        explanation: "Sistem muskuloskeletal terdiri dari otot dan tulang yang berfungsi untuk memberikan dukungan dan memungkinkan pergerakan tubuh."
+        explanation: "Hormon adalah senyawa kimia yang diproduksi oleh kelenjar endokrin dan berfungsi untuk mengatur berbagai proses dalam tubuh."
     },
     {
-        question: "Apa fungsi utama dari sistem otot manusia?",
-        options: ["Menghasilkan energi", "Melindungi organ internal", "Melakukan gerakan tubuh", "Menyaring racun", "Menyimpan cadangan darah"],
+        question: "Hormon apa yang diproduksi oleh kelenjar tiroid untuk mengatur metabolisme tubuh?",
+        options: ["Insulin", "Thyroxine (T4)", "Adrenalin", "Estrogen", "Testosteron"],
+        correct: 1,
+        explanation: "Kelenjar tiroid memproduksi hormon thyroxine (T4) yang mengatur metabolisme tubuh, pertumbuhan, dan perkembangan."
+    },
+    {
+        question: "Apa fungsi utama dari hormon insulin?",
+        options: ["Mengatur suhu tubuh", "Menurunkan kadar glukosa dalam darah", "Meningkatkan detak jantung", "Menurunkan tekanan darah", "Mengatur metabolisme lemak"],
+        correct: 1,
+        explanation: "Insulin adalah hormon yang diproduksi oleh pankreas yang berfungsi untuk menurunkan kadar glukosa dalam darah."
+    },
+    {
+        question: "Di mana hormon melatonin diproduksi dan apa fungsinya?",
+        options: ["Pankreas, mengatur gula darah", "Kelenjar pineal, mengatur siklus tidur", "Tiroid, mengatur metabolisme", "Kelenjar adrenal, mengatur stres", "Hipofisis, mengatur pertumbuhan"],
+        correct: 1,
+        explanation: "Melatonin diproduksi oleh kelenjar pineal di otak dan berfungsi untuk mengatur siklus tidur dan ritme sirkadian tubuh."
+    },
+    {
+        question: "Apa yang dimaksud dengan hormon antidiuretik (ADH) dan apa fungsinya?",
+        options: ["Hormon yang merangsang pertumbuhan tulang", "Hormon yang mengatur pembekuan darah", "Hormon yang mengatur keseimbangan air dalam tubuh", "Hormon yang meningkatkan metabolisme lemak", "Hormon yang mengatur pengeluaran keringat"],
         correct: 2,
-        explanation: "Sistem otot memungkinkan tubuh untuk melakukan gerakan dan mengontrol posisi tubuh."
+        explanation: "Hormon antidiuretik (ADH) diproduksi oleh hipotalamus dan disimpan di kelenjar pituitari, berfungsi untuk mengatur keseimbangan air dalam tubuh dengan mengurangi volume urine."
     },
     {
-        question: "Apa yang dimaksud dengan kontraksi otot isometrik?",
-        options: ["Kontraksi otot tanpa perubahan panjang otot", "Kontraksi otot yang mengurangi panjang otot", "Kontraksi otot yang menambah panjang otot", "Proses pengenduran otot", "Proses pergerakan sendi"],
-        correct: 0,
-        explanation: "Kontraksi otot isometrik terjadi ketika otot berkontraksi tanpa terjadi perubahan panjang otot, seperti saat mendorong dinding."
-    },
-    {
-        question: "Bagaimana otot polos berperan dalam sistem peredaran darah?",
-        options: ["Menyediakan gerakan sukarela untuk organ tubuh", "Menggerakkan darah melalui pembuluh darah", "Menghasilkan impuls listrik", "Mengontrol gerakan sendi", "Menyaring darah"],
+        question: "Apa yang dimaksud dengan hormon parathormon (PTH)?",
+        options: ["Hormon yang meningkatkan kadar glukosa darah", "Hormon yang mengatur metabolisme kalsium dalam tubuh", "Hormon yang mengatur pengeluaran urine", "Hormon yang mempengaruhi pertumbuhan otot", "Hormon yang merangsang pelepasan adrenalin"],
         correct: 1,
-        explanation: "Otot polos membantu menggerakkan darah melalui pembuluh darah, terutama di pembuluh darah yang lebih kecil."
+        explanation: "Parathormon (PTH) diproduksi oleh kelenjar paratiroid dan berfungsi untuk mengatur kadar kalsium dalam darah dengan meningkatkan pelepasan kalsium dari tulang."
     },
     {
-        question: "Apa yang dimaksud dengan sindrom terowongan karpal?",
-        options: ["Penyakit saraf yang terjadi akibat tekanan pada saraf medianus di pergelangan tangan", "Penyakit yang disebabkan oleh kekurangan kalsium", "Penyakit jantung yang disebabkan oleh tekanan darah tinggi", "Gangguan otot pada kaki", "Gangguan pada persendian lutut"],
-        correct: 0,
-        explanation: "Sindrom terowongan karpal terjadi ketika saraf medianus tertekan di pergelangan tangan, menyebabkan rasa sakit dan kelemahan pada tangan dan jari."
-    },
-    {
-        question: "Apa yang dimaksud dengan sendi ball-and-socket?",
-        options: ["Sendi yang memungkinkan gerakan bebas dalam berbagai arah", "Sendi yang hanya memungkinkan gerakan putar", "Sendi yang hanya memungkinkan gerakan satu arah", "Sendi yang terbentuk antara dua tulang datar", "Sendi yang tidak memungkinkan pergerakan"],
-        correct: 0,
-        explanation: "Sendi ball-and-socket seperti sendi panggul dan sendi bahu memungkinkan gerakan bebas dalam banyak arah."
-    },
-    {
-        question: "Bagaimana proses pergerakan otot terjadi?",
-        options: ["Melalui kontraksi serabut otot yang menyebabkan pergeseran sendi", "Melalui aktivitas kimia yang tidak mempengaruhi sendi", "Dengan cara menghasilkan gelombang listrik", "Dengan menghubungkan tulang ke saraf", "Dengan mengurangi panjang serabut otot"],
-        correct: 0,
-        explanation: "Pergerakan otot terjadi melalui kontraksi otot, yang menyebabkan pergeseran atau perubahan posisi pada sendi."
-    },
-    {
-        question: "Apa itu otot skeletal?",
-        options: ["Otot yang bekerja tanpa kontrol sadar", "Otot yang terhubung ke tulang dan dapat dikendalikan secara sadar", "Otot yang hanya ditemukan di jantung", "Otot yang ditemukan di saluran pencernaan", "Otot yang tidak dapat dilatih"],
+        question: "Apa efek dari kelebihan hormon kortisol dalam tubuh?",
+        options: ["Penurunan berat badan", "Peningkatan kecemasan dan stres", "Peningkatan energi dan stamina", "Penyembuhan luka yang lebih cepat", "Penurunan tekanan darah"],
         correct: 1,
-        explanation: "Otot skeletal adalah otot yang terhubung ke tulang dan dikendalikan secara sadar oleh sistem saraf."
+        explanation: "Kelebihan hormon kortisol, yang diproduksi oleh kelenjar adrenal, dapat menyebabkan peningkatan kecemasan, stres, serta gangguan metabolisme."
     },
     {
-        question: "Apa yang dimaksud dengan elastisitas otot?",
-        options: ["Kemampuan otot untuk kembali ke panjang semula setelah meregang", "Kemampuan otot untuk berkontraksi", "Kemampuan otot untuk membesar", "Kemampuan otot untuk menghasilkan impuls listrik", "Kemampuan otot untuk menghentikan pergerakan"],
-        correct: 0,
-        explanation: "Elastisitas otot adalah kemampuan otot untuk kembali ke panjang semula setelah diregangkan."
-    },
-    {
-        question: "Manakah dari berikut ini yang merupakan jenis sendi yang tidak memungkinkan pergerakan?",
-        options: ["Sendi sinartrosis", "Sendi ball-and-socket", "Sendi pelana", "Sendi putar", "Sendi condylar"],
-        correct: 0,
-        explanation: "Sendi sinartrosis adalah sendi yang tidak memungkinkan pergerakan, seperti sendi pada tengkorak."
-    },
-    {
-        question: "Apakah fungsi utama dari ligamen dalam sistem gerak manusia?",
-        options: ["Menghubungkan otot dengan tulang", "Menghubungkan tulang dengan tulang", "Menjaga keseimbangan tubuh", "Memberikan energi untuk kontraksi otot", "Menyaring kotoran dalam darah"],
+        question: "Hormon apa yang berperan dalam proses persalinan dan kelahiran?",
+        options: ["Insulin", "Oksitosin", "Prolaktin", "Testosteron", "Estrogen"],
         correct: 1,
-        explanation: "Ligamen menghubungkan tulang dengan tulang dan memberikan stabilitas pada sendi."
+        explanation: "Oksitosin adalah hormon yang diproduksi oleh hipotalamus dan dilepaskan oleh kelenjar pituitari, berperan dalam kontraksi otot rahim saat persalinan."
     },
     {
-        question: "Bagaimana tubuh kita mengatur suhu saat berolahraga?",
-        options: ["Dengan meningkatkan produksi hormon adrenalin", "Dengan memperlambat detak jantung", "Dengan meningkatkan produksi keringat dan vasodilatasi", "Dengan mengurangi peredaran darah", "Dengan mengurangi penggunaan otot"],
+        question: "Apa yang dimaksud dengan hormon prolaktin dan di mana ia diproduksi?",
+        options: ["Hormon yang merangsang produksi air susu, diproduksi oleh kelenjar tiroid", "Hormon yang mengatur tidur, diproduksi oleh kelenjar pineal", "Hormon yang merangsang produksi air susu, diproduksi oleh kelenjar pituitari", "Hormon yang mengatur metabolisme, diproduksi oleh pankreas", "Hormon yang mempengaruhi pertumbuhan rambut, diproduksi oleh ovarium"],
         correct: 2,
-        explanation: "Tubuh mengatur suhu dengan meningkatkan produksi keringat dan melebarkan pembuluh darah untuk melepaskan panas."
+        explanation: "Prolaktin diproduksi oleh kelenjar pituitari dan berperan dalam merangsang produksi air susu setelah kelahiran."
     },
     {
-        question: "Apa yang dimaksud dengan otot antagonis?",
-        options: ["Otot yang bekerja secara bersamaan untuk menghasilkan gerakan", "Otot yang bekerja berlawanan arah untuk mengontrol gerakan sendi", "Otot yang hanya bergerak satu arah", "Otot yang tidak bisa dikendalikan", "Otot yang tidak bisa berkontraksi"],
-        correct: 1,
-        explanation: "Otot antagonis bekerja berlawanan arah untuk mengontrol dan menyeimbangkan gerakan sendi."
+        question: "Apa fungsi utama dari hormon aldosteron?",
+        options: ["Mengatur keseimbangan elektrolit dan tekanan darah", "Meningkatkan metabolisme lemak", "Meningkatkan produksi sel darah merah", "Menurunkan kadar gula darah", "Meningkatkan produksi hormon pertumbuhan"],
+        correct: 0,
+        explanation: "Aldosteron diproduksi oleh kelenjar adrenal dan berfungsi untuk mengatur keseimbangan elektrolit serta tekanan darah dengan mengatur reabsorpsi natrium di ginjal."
     },
     {
-        question: "Bagaimana tulang dapat berfungsi untuk melindungi organ tubuh?",
-        options: ["Dengan memberikan cadangan energi", "Dengan membentuk pelindung fisik untuk organ vital", "Dengan menghasilkan sel darah merah", "Dengan memompa darah", "Dengan memproduksi hormon"],
-        correct: 1,
-        explanation: "Tulang memberikan pelindung fisik untuk organ tubuh yang vital, seperti tengkorak yang melindungi otak."
+        question: "Apa yang terjadi jika tubuh kekurangan hormon tiroid?",
+        options: ["Peningkatan berat badan dan penurunan energi", "Peningkatan energi dan hiperaktif", "Penurunan kepadatan tulang", "Penurunan kadar gula darah", "Peningkatan kadar kolesterol"],
+        correct: 0,
+        explanation: "Kekurangan hormon tiroid (hipotiroidisme) dapat menyebabkan penurunan energi, peningkatan berat badan, dan gejala lainnya seperti kulit kering dan depresi."
     },
     {
-        question: "Apa yang dimaksud dengan jenis otot jantung?",
-        options: ["Otot yang dapat dikendalikan secara sadar", "Otot yang bekerja tanpa kontrol sadar dan ditemukan di jantung", "Otot yang hanya ada di saluran pencernaan", "Otot yang hanya bekerja dalam keadaan tidur", "Otot yang tidak pernah berkontraksi"],
-        correct: 1,
-        explanation: "Otot jantung adalah otot yang bekerja secara otomatis tanpa kontrol sadar dan hanya ditemukan di jantung."
-    },
-    {
-        question: "Bagaimana tulang dapat tumbuh sepanjang kehidupan manusia?",
-        options: ["Dengan memperbesar diameter tulang", "Dengan regenerasi jaringan otot", "Melalui proses endokondral dan intramembranous ossification", "Dengan menambah berat tulang", "Dengan mengurangi kepadatan tulang"],
+        question: "Bagaimana hormon ghrelin berperan dalam tubuh?",
+        options: ["Menurunkan rasa lapar", "Meningkatkan metabolisme", "Meningkatkan rasa lapar", "Mengurangi kadar gula darah", "Menurunkan tekanan darah"],
         correct: 2,
-        explanation: "Tulang tumbuh melalui proses osifikasi yang melibatkan penggantian kartilago dengan jaringan tulang pada masa pertumbuhan."
+        explanation: "Ghrelin, yang diproduksi oleh lambung, berfungsi untuk merangsang rasa lapar dan meningkatkan nafsu makan."
     },
     {
-        question: "Apa yang dimaksud dengan osteogenesis imperfecta?",
-        options: ["Kondisi kelainan genetik yang menyebabkan tulang rapuh", "Kelainan pada otot", "Kondisi di mana otot tidak dapat berkontraksi", "Gangguan pada sistem pencernaan", "Kondisi yang menyebabkan kelebihan tulang"],
+        question: "Apa peran utama hormon estrogen dalam tubuh wanita?",
+        options: ["Meningkatkan produksi sperma", "Membantu perkembangan karakteristik seksual sekunder wanita", "Mengatur metabolisme energi", "Menurunkan kadar glukosa darah", "Mengatur keseimbangan kalsium dalam tubuh"],
+        correct: 1,
+        explanation: "Estrogen adalah hormon utama yang diproduksi oleh ovarium dan berperan dalam perkembangan karakteristik seksual wanita serta mengatur siklus menstruasi."
+    },
+    {
+        question: "Hormon apa yang diproduksi oleh kelenjar adrenal dan berperan dalam respon 'fight or flight'?",
+        options: ["Estrogen", "Adrenalin", "Progesteron", "Insulin", "Melatonin"],
+        correct: 1,
+        explanation: "Adrenalin, atau epinefrin, diproduksi oleh kelenjar adrenal dan berperan dalam meningkatkan kesiapsiagaan tubuh menghadapi stres dengan meningkatkan detak jantung dan tekanan darah."
+    },
+    {
+        question: "Apa yang dimaksud dengan hormon testoteron?",
+        options: ["Hormon yang mengatur proses pencernaan", "Hormon yang mengatur fungsi seksual pria", "Hormon yang mengatur pertumbuhan rambut", "Hormon yang mengatur metabolisme lemak", "Hormon yang mengatur suhu tubuh"],
+        correct: 1,
+        explanation: "Testosteron adalah hormon utama pada pria yang berperan dalam pengaturan fungsi seksual, pembentukan otot, serta perkembangan karakteristik seksual sekunder pria."
+    },
+    {
+        question: "Hormon apa yang diproduksi oleh kelenjar pituitari anterior dan merangsang produksi hormon tiroid?",
+        options: ["TSH (Thyroid Stimulating Hormone)", "ACTH (Adrenocorticotropic Hormone)", "FSH (Follicle Stimulating Hormone)", "Luteinizing Hormone", "Prolaktin"],
         correct: 0,
-        explanation: "Osteogenesis imperfecta adalah kelainan genetik yang menyebabkan tulang menjadi sangat rapuh dan mudah patah."
+        explanation: "TSH (Thyroid Stimulating Hormone) diproduksi oleh kelenjar pituitari anterior dan merangsang kelenjar tiroid untuk memproduksi hormon tiroid."
     },
     {
-        question: "Bagaimana gerakan tubuh dikendalikan oleh sistem saraf?",
-        options: ["Melalui impuls listrik yang ditransmisikan ke otot", "Dengan pergerakan otomatis organ tubuh", "Dengan mengatur metabolisme tubuh", "Dengan menghentikan gerakan tubuh secara fisik", "Dengan mengendalikan suhu tubuh"],
-        correct: 0,
-        explanation: "Sistem saraf mengirimkan impuls listrik ke otot untuk mengatur gerakan tubuh melalui kontrol sadar dan tidak sadar."
+        question: "Apa yang dimaksud dengan hipofungsi kelenjar pituitari?",
+        options: ["Kelebihan produksi hormon", "Kekurangan produksi hormon", "Kelenjar pituitari tidak berfungsi sama sekali", "Kelenjar pituitari menghasilkan hormon secara otomatis", "Kelenjar pituitari tidak mengatur hormon lain"],
+        correct: 1,
+        explanation: "Hipofungsi kelenjar pituitari terjadi ketika kelenjar pituitari menghasilkan hormon dalam jumlah yang lebih sedikit dari seharusnya, yang dapat mempengaruhi berbagai proses tubuh."
     },
     {
-        question: "Apa yang dimaksud dengan tendinitis?",
-        options: ["Peradangan pada sendi", "Penyakit jantung", "Peradangan pada ligamen", "Peradangan pada tendon", "Peradangan pada tulang"],
-        correct: 3,
-        explanation: "Tendinitis adalah peradangan pada tendon yang dapat terjadi akibat penggunaan berlebihan atau cedera."
+        question: "Hormon apa yang berperan dalam pengaturan reproduksi pada pria?",
+        options: ["Insulin", "Testosteron", "Prolaktin", "Thyroxine", "Cortisol"],
+        correct: 1,
+        explanation: "Testosteron adalah hormon utama yang mengatur proses reproduksi dan perkembangan seksual pada pria."
     },
     {
-        question: "Apa yang terjadi jika otot tidak mendapatkan cukup oksigen saat berolahraga?",
-        options: ["Otot akan melakukan respirasi anaerobik", "Otot akan tetap menghasilkan energi secara normal", "Otot akan mengalami kekakuan permanen", "Otot akan berkontraksi lebih kuat", "Otot akan berhenti bergerak"],
-        correct: 0,
-        explanation: "Ketika otot tidak mendapatkan cukup oksigen, otot akan beralih ke respirasi anaerobik untuk menghasilkan energi, yang dapat menghasilkan asam laktat."
+        question: "Apa yang dimaksud dengan hormon vasopresin?",
+        options: ["Hormon yang mengatur kadar gula darah", "Hormon yang mengatur keseimbangan air tubuh", "Hormon yang meningkatkan tekanan darah", "Hormon yang merangsang pertumbuhan tulang", "Hormon yang mengatur metabolisme"],
+        correct: 1,
+        explanation: "Vasopresin, atau hormon antidiuretik (ADH), diproduksi oleh hipotalamus dan berperan dalam mengatur keseimbangan air dalam tubuh dan mengurangi produksi urine."
     },
     {
-        question: "Apa yang dimaksud dengan sistem gerak manusia secara keseluruhan?",
-        options: ["Jaringan otot dan saraf yang mengendalikan organ tubuh", "Jaringan tulang dan sendi yang mendukung tubuh", "Sistem saraf yang menghubungkan tubuh dengan pikiran", "Sistem muskuloskeletal yang menggabungkan otot dan tulang untuk bergerak", "Sistem pencernaan yang mempengaruhi energi tubuh"],
-        correct: 3,
-        explanation: "Sistem gerak manusia terdiri dari otot dan tulang yang bekerja sama untuk menghasilkan pergerakan tubuh."
+        question: "Apa yang dimaksud dengan sindrom Cushing?",
+        options: ["Kekurangan hormon kortisol", "Kelebihan hormon kortisol", "Kekurangan hormon tiroid", "Kelebihan hormon estrogen", "Kelebihan hormon insulin"],
+        correct: 1,
+        explanation: "Sindrom Cushing terjadi ketika tubuh memproduksi hormon kortisol secara berlebihan, yang dapat menyebabkan penambahan berat badan, hipertensi, dan perubahan kulit."
     }
 ];
 
