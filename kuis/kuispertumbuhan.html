@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Proses perkecambahan yang terjadi ketika kotiledon muncul di atas permukaan tanah disebut?",
+        options: [
+            "Hipogeal",
+            "Epigeal",
+            "Sekunder",
+            "Primer"
+        ],
+        answer: "B",
+        explanation: "Perkecambahan epigeal terjadi ketika kotiledon muncul di atas permukaan tanah."
+    },
+    {
+        question: "Proses perkecambahan yang terjadi ketika kotiledon tetap di bawah permukaan tanah disebut?",
+        options: [
+            "Hipogeal",
+            "Epigeal",
+            "Sekunder",
+            "Primer"
+        ],
+        answer: "A",
+        explanation: "Perkecambahan hipogeal terjadi ketika kotiledon tetap berada di bawah permukaan tanah."
+    },
+    {
+        question: "Apa yang dimaksud dengan pertumbuhan primer pada tumbuhan?",
+        options: [
+            "Pertumbuhan yang terjadi pada akar dan batang",
+            "Pertumbuhan yang terjadi di luar batang",
+            "Pertumbuhan yang disebabkan oleh faktor eksternal",
+            "Pertumbuhan yang terjadi pada akar dan daun"
+        ],
+        answer: "A",
+        explanation: "Pertumbuhan primer adalah pertumbuhan yang terjadi pada akar dan batang melalui pembelahan sel meristem apikal."
+    },
+    {
+        question: "Di mana hormon auksin paling banyak diproduksi dalam tumbuhan?",
+        options: [
+            "Akar",
+            "Daun",
+            "Batang",
+            "Kuncup apikal"
+        ],
+        answer: "D",
+        explanation: "Hormon auksin diproduksi terutama di kuncup apikal dan bagian tumbuhan yang sedang tumbuh."
+    },
+    {
+        question: "Hormon yang berperan dalam mempercepat pertumbuhan tanaman dan mempercepat perkecambahan benih adalah?",
+        options: [
+            "Auksin",
+            "Giberelin",
+            "Sitokinin",
+            "Asam absisat"
+        ],
+        answer: "B",
+        explanation: "Giberelin adalah hormon yang berperan dalam mempercepat pertumbuhan dan perkecambahan."
+    },
+    {
+        question: "Faktor eksternal yang dapat mempengaruhi pertumbuhan tumbuhan antara lain?",
+        options: [
+            "Suhu, cahaya, dan air",
+            "Auksin, giberelin, dan sitokinin",
+            "Batang, akar, dan daun",
+            "Cahaya dan hormon"
+        ],
+        answer: "A",
+        explanation: "Faktor eksternal yang mempengaruhi pertumbuhan tumbuhan antara lain suhu, cahaya, dan air."
+    },
+    {
+        question: "Apa yang dimaksud dengan pertumbuhan sekunder pada tumbuhan?",
+        options: [
+            "Pertumbuhan yang terjadi pada akar dan batang melalui pembelahan sel meristem apikal",
+            "Pertumbuhan yang terjadi pada bagian luar batang dan akar",
+            "Pertumbuhan yang dipengaruhi oleh cahaya dan suhu",
+            "Pertumbuhan yang terjadi hanya di daun"
+        ],
+        answer: "B",
+        explanation: "Pertumbuhan sekunder adalah pertumbuhan yang terjadi pada bagian luar batang dan akar, seperti pembentukan jaringan kayu."
+    },
+    {
+        question: "Faktor internal yang mempengaruhi pertumbuhan tumbuhan adalah?",
+        options: [
+            "Cahaya dan suhu",
+            "Auksin, giberelin, dan sitokinin",
+            "Air dan udara",
+            "Suhu dan air"
+        ],
+        answer: "B",
+        explanation: "Faktor internal yang mempengaruhi pertumbuhan adalah hormon-hormon seperti auksin, giberelin, dan sitokinin."
+    },
+    {
+        question: "Salah satu peran hormon sitokinin dalam tumbuhan adalah?",
+        options: [
+            "Mempercepat pembelahan sel",
+            "Meningkatkan perpanjangan sel",
+            "Menghambat pertumbuhan akar",
+            "Menurunkan laju fotosintesis"
+        ],
+        answer: "A",
+        explanation: "Sitokinin berperan dalam mempercepat pembelahan sel dan mendorong pertumbuhan tunas."
+    },
+    {
+        question: "Pada proses perkecambahan, apa yang terjadi pada benih yang mengalami perkecambahan hipogeal?",
+        options: [
+            "Kotiledon muncul di atas permukaan tanah",
+            "Kotiledon tetap berada di bawah permukaan tanah",
+            "Akar tumbuh ke atas",
+            "Daun pertama muncul di bawah tanah"
+        ],
+        answer: "B",
+        explanation: "Pada perkecambahan hipogeal, kotiledon tetap berada di bawah permukaan tanah sementara batang dan daun muncul ke atas."
+    },
+    {
+        question: "Faktor eksternal yang mempengaruhi kecepatan perkecambahan benih adalah?",
+        options: [
+            "Suhu",
+            "Air",
+            "Cahaya",
+            "Semua jawaban benar"
+        ],
+        answer: "D",
+        explanation: "Suhu, air, dan cahaya semua mempengaruhi kecepatan perkecambahan benih."
+    },
+    {
+        question: "Hormon yang berperan dalam menghambat pertumbuhan dan pembentukan tunas lateral adalah?",
+        options: [
+            "Auksin",
+            "Giberelin",
+            "Sitokinin",
+            "Asam absisat"
+        ],
+        answer: "A",
+        explanation: "Auksin berperan dalam menghambat pertumbuhan tunas lateral dan mempengaruhi orientasi pertumbuhan tanaman."
+    },
+    {
+        question: "Apa yang dimaksud dengan fase perkecambahan pada tumbuhan?",
+        options: [
+            "Perkembangan benih menjadi tanaman",
+            "Proses pembentukan bunga",
+            "Pembentukan akar dan daun",
+            "Proses pembentukan jaringan pada akar"
+        ],
+        answer: "A",
+        explanation: "Fase perkecambahan adalah tahap di mana benih mulai berkembang menjadi tanaman muda."
+    },
+    {
+        question: "Perkecambahan yang terjadi di bawah tanah disebut?",
+        options: [
+            "Perkecambahan epigeal",
+            "Perkecambahan hipogeal",
+            "Perkecambahan primer",
+            "Perkecambahan sekunder"
+        ],
+        answer: "B",
+        explanation: "Perkecambahan hipogeal terjadi ketika kotiledon tetap berada di bawah permukaan tanah."
+    },
+    {
+        question: "Salah satu peran hormon giberelin adalah?",
+        options: [
+            "Menghambat pertumbuhan akar",
+            "Mempercepat perkecambahan benih",
+            "Mengatur pembukaan stomata",
+            "Mengurangi pembentukan bunga"
+        ],
+        answer: "B",
+        explanation: "Giberelin mempercepat perkecambahan benih dan memperpanjang batang tanaman."
+    },
+    {
+        question: "Apa yang dimaksud dengan pertumbuhan tumbuhan yang dipengaruhi oleh faktor internal?",
+        options: [
+            "Perubahan lingkungan yang mempengaruhi tumbuhan",
+            "Proses perubahan yang terjadi dalam tubuh tumbuhan, seperti produksi hormon",
+            "Pengaruh cahaya dan suhu terhadap pertumbuhan",
+            "Perkecambahan benih"
+        ],
+        answer: "B",
+        explanation: "Faktor internal pertumbuhan tumbuhan adalah proses-proses yang terjadi dalam tubuh tumbuhan, seperti produksi hormon."
+    },
+    {
+        question: "Apa peran cahaya dalam pertumbuhan tumbuhan?",
+        options: [
+            "Meningkatkan pembentukan akar",
+            "Mempercepat pertumbuhan batang",
+            "Mendukung proses fotosintesis",
+            "Menghambat pembentukan bunga"
+        ],
+        answer: "C",
+        explanation: "Cahaya mendukung proses fotosintesis yang penting bagi pertumbuhan dan perkembangan tumbuhan."
+    },
+    {
+        question: "Apa yang terjadi pada tumbuhan yang kekurangan air?",
+        options: [
+            "Pertumbuhannya menjadi lebih cepat",
+            "Tumbuhan akan layu dan pertumbuhannya terhambat",
+            "Tumbuhan menjadi lebih besar",
+            "Tumbuhan menghasilkan lebih banyak buah"
+        ],
+        answer: "B",
+        explanation: "Kekurangan air dapat menyebabkan tumbuhan layu dan pertumbuhannya terhambat."
+    },
+    {
+        question: "Apa yang dimaksud dengan tumbuhan yang mengalami pertumbuhan sekunder?",
+        options: [
+            "Pertumbuhan yang terjadi pada akar dan batang",
+            "Pertumbuhan yang terjadi pada bagian luar batang dan akar",
+            "Pertumbuhan yang terjadi pada daun",
+            "Pertumbuhan akibat faktor eksternal"
+        ],
+        answer: "B",
+        explanation: "Pertumbuhan sekunder terjadi pada bagian luar batang dan akar, seperti pembentukan jaringan kayu."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

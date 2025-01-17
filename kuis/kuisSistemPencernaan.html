@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Organ pertama dalam sistem pencernaan yang berperan dalam pengunyahan adalah?",
+        options: [
+            "Kerongkongan",
+            "Mulut",
+            "Lambung",
+            "Usus halus"
+        ],
+        answer: "B",
+        explanation: "Mulut adalah organ pertama dalam sistem pencernaan yang berperan dalam pengunyahan makanan."
+    },
+    {
+        question: "Proses pencernaan mekanik terjadi di?",
+        options: [
+            "Kerongkongan",
+            "Mulut",
+            "Lambung",
+            "Usus besar"
+        ],
+        answer: "B",
+        explanation: "Pencernaan mekanik, seperti pengunyahan, terjadi di mulut."
+    },
+    {
+        question: "Enzim yang berfungsi mengubah karbohidrat menjadi maltosa adalah?",
+        options: [
+            "Lipase",
+            "Amilase",
+            "Pepsin",
+            "Tripsin"
+        ],
+        answer: "B",
+        explanation: "Amilase adalah enzim yang mengubah karbohidrat menjadi maltosa."
+    },
+    {
+        question: "Fungsi utama usus halus dalam sistem pencernaan adalah?",
+        options: [
+            "Menyerap nutrisi",
+            "Mengunyah makanan",
+            "Mencerna protein",
+            "Menghasilkan enzim pencernaan"
+        ],
+        answer: "A",
+        explanation: "Usus halus berfungsi untuk menyerap nutrisi dari makanan yang telah dicerna."
+    },
+    {
+        question: "Gangguan pencernaan yang disebabkan oleh peradangan pada lambung adalah?",
+        options: [
+            "Diare",
+            "Sembelit",
+            "Gastritis",
+            "Maag"
+        ],
+        answer: "C",
+        explanation: "Gastritis adalah gangguan pencernaan akibat peradangan pada lambung."
+    },
+    {
+        question: "Proses pencernaan kimiawi di lambung melibatkan enzim?",
+        options: [
+            "Amilase",
+            "Pepsin",
+            "Lipase",
+            "Tripsin"
+        ],
+        answer: "B",
+        explanation: "Pepsin adalah enzim yang berfungsi memecah protein di lambung."
+    },
+    {
+        question: "Apa fungsi utama enzim lipase dalam sistem pencernaan?",
+        options: [
+            "Mengubah lemak menjadi asam lemak dan gliserol",
+            "Mengubah protein menjadi asam amino",
+            "Mengubah karbohidrat menjadi glukosa",
+            "Mengubah vitamin menjadi energi"
+        ],
+        answer: "A",
+        explanation: "Lipase adalah enzim yang memecah lemak menjadi asam lemak dan gliserol."
+    },
+    {
+        question: "Pencernaan makanan di mulut melibatkan enzim?",
+        options: [
+            "Amilase",
+            "Pepsin",
+            "Lipase",
+            "Tripsin"
+        ],
+        answer: "A",
+        explanation: "Amilase adalah enzim dalam air liur yang memulai pencernaan karbohidrat di mulut."
+    },
+    {
+        question: "Organ yang berfungsi mengangkut makanan dari mulut ke lambung adalah?",
+        options: [
+            "Usus halus",
+            "Kerongkongan",
+            "Anus",
+            "Usus besar"
+        ],
+        answer: "B",
+        explanation: "Kerongkongan adalah organ yang mengangkut makanan dari mulut ke lambung melalui gerakan peristaltik."
+    },
+    {
+        question: "Bagian dari sistem pencernaan yang bertugas menyerap air dari makanan adalah?",
+        options: [
+            "Mulut",
+            "Lambung",
+            "Usus besar",
+            "Usus halus"
+        ],
+        answer: "C",
+        explanation: "Usus besar menyerap air dan membentuk feses dari sisa makanan."
+    },
+    {
+        question: "Nutrisi yang berfungsi sebagai sumber energi utama bagi tubuh adalah?",
+        options: [
+            "Karbohidrat",
+            "Protein",
+            "Lemak",
+            "Vitamin"
+        ],
+        answer: "A",
+        explanation: "Karbohidrat adalah sumber energi utama bagi tubuh."
+    },
+    {
+        question: "Proses pergerakan makanan melalui saluran pencernaan disebut?",
+        options: [
+            "Enzimatis",
+            "Peristaltik",
+            "Absorpsi",
+            "Defekasi"
+        ],
+        answer: "B",
+        explanation: "Peristaltik adalah gerakan otot saluran pencernaan untuk mendorong makanan."
+    },
+    {
+        question: "Apa fungsi utama enzim tripsin dalam sistem pencernaan?",
+        options: [
+            "Mengubah protein menjadi asam amino",
+            "Mengubah lemak menjadi asam lemak",
+            "Mengubah karbohidrat menjadi maltosa",
+            "Mengubah vitamin menjadi energi"
+        ],
+        answer: "A",
+        explanation: "Tripsin adalah enzim yang memecah protein menjadi asam amino di usus halus."
+    },
+    {
+        question: "Gangguan pencernaan yang ditandai dengan sulit buang air besar disebut?",
+        options: [
+            "Diare",
+            "Sembelit",
+            "Gastritis",
+            "Infeksi usus"
+        ],
+        answer: "B",
+        explanation: "Sembelit adalah gangguan pencernaan akibat sulitnya buang air besar."
+    },
+    {
+        question: "Vitamin yang larut dalam lemak antara lain?",
+        options: [
+            "Vitamin B dan C",
+            "Vitamin A, D, E, dan K",
+            "Vitamin D dan C",
+            "Vitamin A dan B"
+        ],
+        answer: "B",
+        explanation: "Vitamin A, D, E, dan K adalah vitamin yang larut dalam lemak."
+    },
+    {
+        question: "Proses pencernaan karbohidrat dimulai di?",
+        options: [
+            "Lambung",
+            "Mulut",
+            "Usus halus",
+            "Usus besar"
+        ],
+        answer: "B",
+        explanation: "Pencernaan karbohidrat dimulai di mulut dengan bantuan enzim amilase."
+    },
+    {
+        question: "Apa fungsi utama lambung dalam sistem pencernaan?",
+        options: [
+            "Mencerna lemak",
+            "Mencerna protein dan membunuh bakteri",
+            "Menyerap nutrisi",
+            "Mengangkut makanan ke usus"
+        ],
+        answer: "B",
+        explanation: "Lambung mencerna protein dengan enzim pepsin dan membunuh bakteri dengan asam lambung."
+    },
+    {
+        question: "Gangguan pencernaan yang menyebabkan tinja menjadi encer dan sering buang air besar adalah?",
+        options: [
+            "Gastritis",
+            "Sembelit",
+            "Diare",
+            "Radang usus"
+        ],
+        answer: "C",
+        explanation: "Diare adalah gangguan pencernaan yang menyebabkan tinja encer dan frekuensi buang air besar meningkat."
+    },
+    {
+        question: "Organ terakhir dalam sistem pencernaan adalah?",
+        options: [
+            "Usus halus",
+            "Usus besar",
+            "Anus",
+            "Lambung"
+        ],
+        answer: "C",
+        explanation: "Anus adalah organ terakhir dalam sistem pencernaan tempat keluarnya feses."
+    },
+    {
+        question: "Apa peran utama usus besar dalam sistem pencernaan?",
+        options: [
+            "Menyerap nutrisi",
+            "Mencerna protein",
+            "Menyerap air dan membentuk feses",
+            "Menghasilkan enzim"
+        ],
+        answer: "C",
+        explanation: "Usus besar menyerap air dari sisa makanan dan membentuk feses."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

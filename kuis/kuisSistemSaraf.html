@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Bagian otak yang berfungsi untuk mengatur keseimbangan tubuh adalah?",
+        options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Batang otak",
+            "Sumsum tulang belakang"
+        ],
+        answer: "B",
+        explanation: "Cerebellum berfungsi untuk mengatur keseimbangan tubuh dan koordinasi gerakan."
+    },
+    {
+        question: "Neuron yang berfungsi untuk menghantar impuls dari organ ke sistem saraf pusat adalah?",
+        options: [
+            "Neuron sensorik",
+            "Neuron motorik",
+            "Neuron intermediet",
+            "Neuron penghubung"
+        ],
+        answer: "A",
+        explanation: "Neuron sensorik menghantar impuls dari organ tubuh ke sistem saraf pusat."
+    },
+    {
+        question: "Proses penghantaran impuls antar neuron terjadi melalui?",
+        options: [
+            "Sinapsis",
+            "Sumsum tulang belakang",
+            "Kornea",
+            "Lensa"
+        ],
+        answer: "A",
+        explanation: "Impuls dihantar antar neuron melalui sinapsis, yang merupakan celah antara dua neuron."
+    },
+    {
+        question: "Bagian otak yang berfungsi untuk mengontrol aktivitas dasar tubuh seperti pernapasan dan detak jantung adalah?",
+        options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Batang otak",
+            "Sumsum tulang belakang"
+        ],
+        answer: "C",
+        explanation: "Batang otak mengontrol fungsi-fungsi vital tubuh seperti pernapasan dan detak jantung."
+    },
+    {
+        question: "Bagian mata yang berfungsi untuk menangkap cahaya adalah?",
+        options: [
+            "Retina",
+            "Kornea",
+            "Lensa",
+            "Pupil"
+        ],
+        answer: "A",
+        explanation: "Retina adalah bagian mata yang menangkap cahaya dan mengirimkan impuls ke otak."
+    },
+    {
+        question: "Bagian telinga yang berfungsi untuk mendeteksi suara adalah?",
+        options: [
+            "Koklea",
+            "Saluran semisirkular",
+            "Gendang telinga",
+            "Tabung eustachius"
+        ],
+        answer: "A",
+        explanation: "Koklea adalah bagian telinga yang mendeteksi gelombang suara dan mengirimkan impuls ke otak."
+    },
+    {
+        question: "Reseptor di kulit yang berfungsi untuk mendeteksi suhu adalah?",
+        options: [
+            "Reseptor tekanan",
+            "Reseptor suhu",
+            "Reseptor rasa",
+            "Reseptor nyeri"
+        ],
+        answer: "B",
+        explanation: "Reseptor suhu di kulit mendeteksi perubahan suhu tubuh."
+    },
+    {
+        question: "Bagian otak yang berfungsi untuk berpikir dan mengendalikan gerakan tubuh adalah?",
+        options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Batang otak",
+            "Sumsum tulang belakang"
+        ],
+        answer: "A",
+        explanation: "Cerebrum mengatur pikiran, persepsi, dan pengendalian gerakan tubuh."
+    },
+    {
+        question: "Neuron yang menghubungkan neuron motorik dengan neuron sensorik disebut?",
+        options: [
+            "Neuron intermediet",
+            "Neuron motorik",
+            "Neuron sensorik",
+            "Neuron penghubung"
+        ],
+        answer: "A",
+        explanation: "Neuron intermediet berfungsi sebagai penghubung antara neuron sensorik dan motorik."
+    },
+    {
+        question: "Gangguan pada sistem saraf yang menyebabkan kelumpuhan otot akibat rusaknya neuron motorik adalah?",
+        options: [
+            "Stroke",
+            "Parkinson",
+            "Epilepsi",
+            "Sklerosis lateral amiotrofik (ALS)"
+        ],
+        answer: "D",
+        explanation: "Sklerosis lateral amiotrofik (ALS) adalah gangguan yang merusak neuron motorik dan menyebabkan kelumpuhan otot."
+    },
+    {
+        question: "Bagian telinga yang berfungsi untuk menjaga keseimbangan tubuh adalah?",
+        options: [
+            "Koklea",
+            "Saluran semisirkular",
+            "Gendang telinga",
+            "Tabung eustachius"
+        ],
+        answer: "B",
+        explanation: "Saluran semisirkular di telinga berfungsi untuk mendeteksi perubahan posisi dan menjaga keseimbangan tubuh."
+    },
+    {
+        question: "Penyakit yang menyebabkan gerakan tubuh menjadi tidak terkendali akibat kerusakan di otak adalah?",
+        options: [
+            "Parkinson",
+            "Epilepsi",
+            "Stroke",
+            "Multiple sclerosis"
+        ],
+        answer: "A",
+        explanation: "Parkinson adalah gangguan sistem saraf yang menyebabkan gerakan tubuh menjadi tidak terkendali."
+    },
+    {
+        question: "Sistem saraf yang mengatur aktivitas tubuh tanpa kita sadari, seperti detak jantung, disebut?",
+        options: [
+            "Sistem saraf somatik",
+            "Sistem saraf otonom",
+            "Sistem saraf pusat",
+            "Sistem saraf periferal"
+        ],
+        answer: "B",
+        explanation: "Sistem saraf otonom mengatur fungsi tubuh yang tidak disadari, seperti detak jantung dan pernapasan."
+    },
+    {
+        question: "Gangguan pada sistem saraf yang menyebabkan kejang-kejang tiba-tiba disebut?",
+        options: [
+            "Parkinson",
+            "Epilepsi",
+            "Stroke",
+            "Sklerosis multipel"
+        ],
+        answer: "B",
+        explanation: "Epilepsi adalah gangguan sistem saraf yang menyebabkan kejang-kejang akibat aktivitas listrik otak yang tidak normal."
+    },
+    {
+        question: "Bagian otak yang mengatur koordinasi dan keseimbangan tubuh adalah?",
+        options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Batang otak",
+            "Sumsum tulang belakang"
+        ],
+        answer: "B",
+        explanation: "Cerebellum mengatur keseimbangan dan koordinasi gerakan tubuh."
+    },
+    {
+        question: "Bagian mata yang berfungsi untuk memfokuskan cahaya yang masuk adalah?",
+        options: [
+            "Kornea",
+            "Lensa",
+            "Retina",
+            "Pupil"
+        ],
+        answer: "B",
+        explanation: "Lensa berfungsi untuk memfokuskan cahaya yang masuk ke mata agar gambar yang diterima retina jelas."
+    },
+    {
+        question: "Penyakit yang disebabkan oleh penyumbatan pembuluh darah di otak dan menyebabkan kelumpuhan adalah?",
+        options: [
+            "Parkinson",
+            "Epilepsi",
+            "Stroke",
+            "Sklerosis multipel"
+        ],
+        answer: "C",
+        explanation: "Stroke terjadi akibat penyumbatan pembuluh darah di otak yang dapat menyebabkan kelumpuhan."
+    },
+    {
+        question: "Gangguan pada sistem saraf yang menyebabkan hilangnya kemampuan berbicara akibat kerusakan pada otak disebut?",
+        options: [
+            "Afasia",
+            "Parkinson",
+            "Epilepsi",
+            "Stroke"
+        ],
+        answer: "A",
+        explanation: "Afasia adalah gangguan pada kemampuan berbicara akibat kerusakan pada area bahasa otak."
+    },
+    {
+        question: "Bagian telinga yang berfungsi untuk mengubah gelombang suara menjadi impuls listrik adalah?",
+        options: [
+            "Koklea",
+            "Saluran semisirkular",
+            "Gendang telinga",
+            "Tabung eustachius"
+        ],
+        answer: "A",
+        explanation: "Koklea mengubah gelombang suara menjadi impuls listrik yang dikirim ke otak untuk diproses."
+    },
+    {
+        question: "Bagian otak yang mengatur fungsi dasar tubuh, seperti pernapasan dan detak jantung, adalah?",
+        options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Batang otak",
+            "Medula oblongata"
+        ],
+        answer: "C",
+        explanation: "Batang otak, termasuk medula oblongata, mengatur fungsi dasar tubuh seperti pernapasan dan detak jantung."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

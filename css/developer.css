@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  header {
+    background-color: #388e3c, #43a047;
+    padding: 20px;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar .nav-links li {
+    margin-right: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+  
+  .profile-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .profile-about {
+    flex: 1;
+  }
+  
+  .profile-about h2 {
+    color: #4a4aeb;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-about p {
+    margin: 5px 0;
+  }
+  
+  .profile-about a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .profile-about a:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .profile-gallery img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .profile-footer {
+    text-align: center;
+    color: #4a4aeb;
+    margin-top: 20px;
+  }
+  

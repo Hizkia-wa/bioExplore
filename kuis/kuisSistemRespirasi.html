@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama hidung dalam sistem pernapasan?",
+        options: [
+            "Mengangkut oksigen ke darah",
+            "Menghangatkan, menyaring, dan melembapkan udara",
+            "Mengalirkan udara langsung ke paru-paru",
+            "Menyimpan oksigen sementara",
+            "Mengatur kecepatan pernapasan"
+        ],
+        answer: "B",
+        explanation: "Hidung berfungsi menyaring debu, melembapkan, dan menghangatkan udara sebelum masuk ke saluran pernapasan."
+    },
+    {
+        question: "Apa nama struktur yang menghubungkan laring dengan bronkus?",
+        options: ["Trakea", "Alveolus", "Faring", "Diafragma", "Epiglotis"],
+        answer: "A",
+        explanation: "Trakea adalah saluran yang menghubungkan laring dengan bronkus, berfungsi mengalirkan udara ke paru-paru."
+    },
+    {
+        question: "Di mana tempat terjadinya pertukaran gas oksigen dan karbon dioksida?",
+        options: ["Hidung", "Bronkus", "Trakea", "Alveolus", "Diafragma"],
+        answer: "D",
+        explanation: "Pertukaran gas terjadi di alveolus, tempat oksigen masuk ke darah dan karbon dioksida keluar."
+    },
+    {
+        question: "Apa yang terjadi selama inspirasi?",
+        options: [
+            "Diafragma relaksasi dan udara keluar",
+            "Diafragma kontraksi dan udara masuk",
+            "Paru-paru mengempis",
+            "Bronkus menyempit",
+            "Alveolus kosong dari udara"
+        ],
+        answer: "B",
+        explanation: "Selama inspirasi, diafragma berkontraksi, rongga dada membesar, dan udara masuk ke paru-paru."
+    },
+    {
+        question: "Apa peran hemoglobin dalam transportasi oksigen?",
+        options: [
+            "Mengubah oksigen menjadi energi",
+            "Mengangkut oksigen di dalam sel darah merah",
+            "Mengeluarkan oksigen dari tubuh",
+            "Menghubungkan karbon dioksida dengan sel darah merah",
+            "Mengatur tekanan darah"
+        ],
+        answer: "B",
+        explanation: "Hemoglobin dalam sel darah merah mengikat oksigen untuk diangkut ke seluruh tubuh."
+    },
+    {
+        question: "Apa yang dimaksud dengan ekspirasi?",
+        options: [
+            "Proses udara masuk ke paru-paru",
+            "Proses udara keluar dari paru-paru",
+            "Proses pertukaran gas di alveolus",
+            "Proses kontraksi diafragma",
+            "Proses pernapasan buatan"
+        ],
+        answer: "B",
+        explanation: "Ekspirasi adalah proses udara keluar dari paru-paru akibat relaksasi otot pernapasan."
+    },
+    {
+        question: "Apa penyebab utama asma?",
+        options: [
+            "Infeksi bakteri",
+            "Alergi atau iritasi saluran napas",
+            "Kekurangan oksigen",
+            "Kerusakan alveolus",
+            "Gangguan hemoglobin"
+        ],
+        answer: "B",
+        explanation: "Asma disebabkan oleh alergi atau iritasi yang menyebabkan penyempitan saluran napas."
+    },
+    {
+        question: "Apa yang terjadi pada alveolus selama pneumonia?",
+        options: [
+            "Alveolus menjadi lebih elastis",
+            "Alveolus terisi cairan atau nanah",
+            "Alveolus berhenti memproduksi oksigen",
+            "Alveolus mengecil",
+            "Alveolus kehilangan hemoglobin"
+        ],
+        answer: "B",
+        explanation: "Pneumonia menyebabkan alveolus terisi cairan atau nanah, mengganggu pertukaran gas."
+    },
+    {
+        question: "Apa fungsi bronkus dalam sistem pernapasan?",
+        options: [
+            "Menyaring udara dari debu",
+            "Mengangkut udara ke alveolus",
+            "Mengatur kecepatan pernapasan",
+            "Menyimpan oksigen sementara",
+            "Memproduksi hemoglobin"
+        ],
+        answer: "B",
+        explanation: "Bronkus berfungsi mengalirkan udara dari trakea ke alveolus."
+    },
+    {
+        question: "Apa penyebab utama bronkitis?",
+        options: [
+            "Infeksi virus atau bakteri",
+            "Kekurangan oksigen",
+            "Kerusakan hemoglobin",
+            "Penumpukan karbon dioksida",
+            "Gangguan diafragma"
+        ],
+        answer: "A",
+        explanation: "Bronkitis disebabkan oleh infeksi virus atau bakteri yang menyebabkan peradangan pada bronkus."
+    },
+    {
+        question: "Apa yang terjadi selama pertukaran gas di alveolus?",
+        options: [
+            "Karbon dioksida masuk ke darah, oksigen keluar",
+            "Oksigen masuk ke darah, karbon dioksida keluar",
+            "Hanya oksigen yang masuk ke paru-paru",
+            "Hanya karbon dioksida yang keluar dari tubuh",
+            "Udara dialirkan langsung ke bronkus"
+        ],
+        answer: "B",
+        explanation: "Di alveolus, oksigen berdifusi masuk ke kapiler darah, dan karbon dioksida berdifusi keluar ke udara."
+    },
+    {
+        question: "Apa ciri khas dari struktur alveolus?",
+        options: [
+            "Dindingnya tebal dan kaku",
+            "Dikelilingi oleh kapiler darah",
+            "Tidak elastis",
+            "Tidak memiliki fungsi khusus",
+            "Hanya berfungsi selama inspirasi"
+        ],
+        answer: "B",
+        explanation: "Alveolus dikelilingi kapiler darah untuk memudahkan pertukaran gas oksigen dan karbon dioksida."
+    },
+    {
+        question: "Apa yang terjadi saat diafragma berkontraksi?",
+        options: [
+            "Rongga dada mengecil",
+            "Udara keluar dari paru-paru",
+            "Rongga dada membesar",
+            "Paru-paru mengempis",
+            "Pernapasan berhenti sementara"
+        ],
+        answer: "C",
+        explanation: "Diafragma berkontraksi menyebabkan rongga dada membesar, memungkinkan udara masuk ke paru-paru."
+    },
+    {
+        question: "Apa penyebab utama penyakit asma?",
+        options: [
+            "Kerusakan alveolus",
+            "Infeksi bakteri",
+            "Alergi atau iritasi saluran napas",
+            "Penumpukan cairan di paru-paru",
+            "Kekurangan hemoglobin"
+        ],
+        answer: "C",
+        explanation: "Asma disebabkan oleh alergi atau iritasi yang menyebabkan penyempitan saluran napas."
+    },
+    {
+        question: "Apa fungsi utama alveolus dalam sistem respirasi?",
+        options: [
+            "Menyaring udara dari debu",
+            "Mengangkut udara ke bronkus",
+            "Tempat pertukaran gas oksigen dan karbon dioksida",
+            "Mengatur ritme pernapasan",
+            "Menyimpan udara sementara"
+        ],
+        answer: "C",
+        explanation: "Alveolus adalah tempat utama pertukaran gas oksigen dan karbon dioksida."
+    },
+    {
+        question: "Apa yang terjadi pada saluran napas saat bronkitis?",
+        options: [
+            "Saluran napas melebar",
+            "Saluran napas menyempit karena peradangan",
+            "Alveolus rusak",
+            "Oksigen tidak dapat masuk ke paru-paru",
+            "Diafragma berhenti bekerja"
+        ],
+        answer: "B",
+        explanation: "Bronkitis menyebabkan peradangan pada bronkus, yang membuat saluran napas menyempit."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

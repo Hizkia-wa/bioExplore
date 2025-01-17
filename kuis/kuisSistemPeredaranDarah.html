@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama sel darah merah dalam sistem peredaran darah?",
+        options: [
+            "Mengangkut karbon dioksida",
+            "Mengangkut oksigen",
+            "Melawan infeksi",
+            "Membantu pembekuan darah"
+        ],
+        answer: "B",
+        explanation: "Sel darah merah mengandung hemoglobin yang berfungsi mengangkut oksigen ke seluruh tubuh."
+    },
+    {
+        question: "Komponen darah yang berperan dalam pembekuan darah adalah?",
+        options: [
+            "Sel darah merah",
+            "Trombosit",
+            "Sel darah putih",
+            "Plasma darah"
+        ],
+        answer: "B",
+        explanation: "Trombosit adalah komponen darah yang berperan dalam proses pembekuan darah."
+    },
+    {
+        question: "Apa fungsi utama plasma darah?",
+        options: [
+            "Mengangkut oksigen",
+            "Mengangkut nutrisi dan hormon",
+            "Membekukan darah",
+            "Melawan infeksi"
+        ],
+        answer: "B",
+        explanation: "Plasma darah berfungsi mengangkut nutrisi, hormon, dan limbah metabolisme."
+    },
+    {
+        question: "Apa yang terjadi selama peredaran darah kecil?",
+        options: [
+            "Darah mengalir dari jantung ke paru-paru untuk pertukaran gas",
+            "Darah mengalir dari paru-paru ke seluruh tubuh",
+            "Darah mengalir dari jantung ke seluruh tubuh",
+            "Darah mengalir dari ventrikel kiri ke atrium kanan"
+        ],
+        answer: "A",
+        explanation: "Peredaran darah kecil membawa darah dari jantung ke paru-paru untuk pertukaran oksigen dan karbon dioksida."
+    },
+    {
+        question: "Bagian jantung yang menerima darah dari tubuh adalah?",
+        options: [
+            "Atrium kanan",
+            "Atrium kiri",
+            "Ventrikel kanan",
+            "Ventrikel kiri"
+        ],
+        answer: "A",
+        explanation: "Atrium kanan menerima darah yang kaya karbon dioksida dari seluruh tubuh."
+    },
+    {
+        question: "Apa perbedaan utama antara peredaran darah kecil dan peredaran darah besar?",
+        options: [
+            "Peredaran darah kecil ke paru-paru, sedangkan peredaran darah besar ke seluruh tubuh",
+            "Peredaran darah kecil ke seluruh tubuh, sedangkan peredaran darah besar ke paru-paru",
+            "Peredaran darah kecil hanya melibatkan atrium, sedangkan peredaran darah besar melibatkan ventrikel",
+            "Peredaran darah kecil membawa oksigen, sedangkan peredaran darah besar membawa karbon dioksida"
+        ],
+        answer: "A",
+        explanation: "Peredaran darah kecil melibatkan paru-paru untuk pertukaran gas, sedangkan peredaran darah besar mengangkut darah ke seluruh tubuh."
+    },
+    {
+        question: "Fase jantung ketika jantung berkontraksi untuk memompa darah disebut?",
+        options: [
+            "Diastol",
+            "Sistol",
+            "Peristaltik",
+            "Relaksasi"
+        ],
+        answer: "B",
+        explanation: "Sistol adalah fase ketika jantung berkontraksi dan memompa darah keluar."
+    },
+    {
+        question: "Fase relaksasi jantung ketika darah mengisi atrium dan ventrikel disebut?",
+        options: [
+            "Diastol",
+            "Sistol",
+            "Relaksasi total",
+            "Peredaran balik"
+        ],
+        answer: "A",
+        explanation: "Diastol adalah fase relaksasi jantung ketika darah mengisi ruang-ruang jantung."
+    },
+    {
+        question: "Gangguan pada sistem peredaran darah yang disebabkan oleh rendahnya jumlah hemoglobin adalah?",
+        options: [
+            "Hemofilia",
+            "Hipertensi",
+            "Anemia",
+            "Leukemia"
+        ],
+        answer: "C",
+        explanation: "Anemia adalah kondisi di mana jumlah hemoglobin atau sel darah merah rendah."
+    },
+    {
+        question: "Apa fungsi utama katup jantung?",
+        options: [
+            "Mengontrol aliran darah di jantung",
+            "Mengangkut oksigen",
+            "Memompa darah keluar",
+            "Mengatur tekanan darah"
+        ],
+        answer: "A",
+        explanation: "Katup jantung memastikan darah mengalir dalam satu arah dan mencegah aliran balik."
+    },
+    {
+        question: "Apa yang dimaksud dengan hemofilia?",
+        options: [
+            "Gangguan pembekuan darah",
+            "Tekanan darah tinggi",
+            "Rendahnya jumlah hemoglobin",
+            "Infeksi pada darah"
+        ],
+        answer: "A",
+        explanation: "Hemofilia adalah gangguan genetik yang menyebabkan darah sulit membeku."
+    },
+    {
+        question: "Bagian jantung yang memompa darah ke seluruh tubuh adalah?",
+        options: [
+            "Ventrikel kanan",
+            "Ventrikel kiri",
+            "Atrium kanan",
+            "Atrium kiri"
+        ],
+        answer: "B",
+        explanation: "Ventrikel kiri memompa darah yang kaya oksigen ke seluruh tubuh."
+    },
+    {
+        question: "Apa yang dimaksud dengan hipertensi?",
+        options: [
+            "Tekanan darah rendah",
+            "Tekanan darah tinggi",
+            "Gangguan pembekuan darah",
+            "Rendahnya kadar oksigen dalam darah"
+        ],
+        answer: "B",
+        explanation: "Hipertensi adalah kondisi di mana tekanan darah seseorang secara kronis tinggi."
+    },
+    {
+        question: "Bagian darah yang berfungsi melawan infeksi adalah?",
+        options: [
+            "Sel darah merah",
+            "Sel darah putih",
+            "Trombosit",
+            "Plasma darah"
+        ],
+        answer: "B",
+        explanation: "Sel darah putih adalah komponen darah yang melawan infeksi dan penyakit."
+    },
+    {
+        question: "Apa yang terjadi pada darah dalam peredaran darah besar?",
+        options: [
+            "Mengalir dari jantung ke paru-paru",
+            "Mengalir dari jantung ke seluruh tubuh",
+            "Mengalir dari paru-paru ke jantung",
+            "Mengalir dari ventrikel kanan ke atrium kiri"
+        ],
+        answer: "B",
+        explanation: "Peredaran darah besar mengangkut darah kaya oksigen dari jantung ke seluruh tubuh."
+    },
+    {
+        question: "Apa fungsi utama ventrikel kanan dalam jantung?",
+        options: [
+            "Memompa darah ke paru-paru",
+            "Memompa darah ke seluruh tubuh",
+            "Mengumpulkan darah dari atrium kanan",
+            "Mengangkut darah kaya oksigen"
+        ],
+        answer: "A",
+        explanation: "Ventrikel kanan memompa darah kaya karbon dioksida ke paru-paru untuk pertukaran gas."
+    },
+    {
+        question: "Apa peran hemoglobin dalam sel darah merah?",
+        options: [
+            "Melawan infeksi",
+            "Mengangkut oksigen",
+            "Membekukan darah",
+            "Mengatur tekanan darah"
+        ],
+        answer: "B",
+        explanation: "Hemoglobin adalah protein dalam sel darah merah yang mengangkut oksigen."
+    },
+    {
+        question: "Apa yang terjadi pada darah selama peredaran darah kecil?",
+        options: [
+            "Darah menerima oksigen di paru-paru",
+            "Darah memberikan oksigen ke tubuh",
+            "Darah mengalir ke seluruh tubuh",
+            "Darah membawa nutrisi ke jaringan"
+        ],
+        answer: "A",
+        explanation: "Selama peredaran darah kecil, darah menerima oksigen di paru-paru."
+    },
+    {
+        question: "Gangguan yang menyebabkan tekanan darah tinggi disebut?",
+        options: [
+            "Anemia",
+            "Hipertensi",
+            "Hemofilia",
+            "Leukemia"
+        ],
+        answer: "B",
+        explanation: "Hipertensi adalah gangguan yang ditandai dengan tekanan darah yang tinggi."
+    },
+    {
+        question: "Apa fungsi utama atrium kiri dalam jantung?",
+        options: [
+            "Menerima darah dari seluruh tubuh",
+            "Menerima darah kaya oksigen dari paru-paru",
+            "Memompa darah ke paru-paru",
+            "Memompa darah ke seluruh tubuh"
+        ],
+        answer: "B",
+        explanation: "Atrium kiri menerima darah yang kaya oksigen dari paru-paru."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

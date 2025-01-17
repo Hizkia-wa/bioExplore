@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Organ utama yang berfungsi menghasilkan sperma pada pria adalah?",
+        options: [
+            "Testis",
+            "Vas deferens",
+            "Prostat",
+            "Penis"
+        ],
+        answer: "A",
+        explanation: "Testis adalah organ utama yang menghasilkan sperma pada pria."
+    },
+    {
+        question: "Di mana proses oogenesis terjadi pada wanita?",
+        options: [
+            "Ovarium",
+            "Rahim",
+            "Tuba falopi",
+            "Vagina"
+        ],
+        answer: "A",
+        explanation: "Oogenesis terjadi di ovarium, tempat perkembangan sel telur."
+    },
+    {
+        question: "Proses pembentukan sperma pada pria disebut?",
+        options: [
+            "Oogenesis",
+            "Spermatogenesis",
+            "Ovulasi",
+            "Menstruasi"
+        ],
+        answer: "B",
+        explanation: "Spermatogenesis adalah proses pembentukan sperma di testis."
+    },
+    {
+        question: "Apa yang dimaksud dengan ovulasi?",
+        options: [
+            "Pelepasan sel telur dari ovarium",
+            "Perkembangan sel telur",
+            "Proses pembuahan sel telur",
+            "Pendarahan selama menstruasi"
+        ],
+        answer: "A",
+        explanation: "Ovulasi adalah proses pelepasan sel telur yang matang dari ovarium."
+    },
+    {
+        question: "Siklus menstruasi pada wanita umumnya berlangsung selama berapa hari?",
+        options: [
+            "7-10 hari",
+            "14-21 hari",
+            "28-30 hari",
+            "35-40 hari"
+        ],
+        answer: "C",
+        explanation: "Siklus menstruasi pada wanita umumnya berlangsung sekitar 28-30 hari."
+    },
+    {
+        question: "Bagian dari alat reproduksi pria yang berfungsi mengalirkan sperma ke uretra adalah?",
+        options: [
+            "Vas deferens",
+            "Epididimis",
+            "Prostat",
+            "Uretra"
+        ],
+        answer: "A",
+        explanation: "Vas deferens adalah saluran yang mengalirkan sperma dari epididimis ke uretra."
+    },
+    {
+        question: "Apa yang terjadi jika sel telur tidak dibuahi setelah ovulasi?",
+        options: [
+            "Sel telur mati dan dikeluarkan bersama lapisan rahim",
+            "Sel telur berkembang menjadi janin",
+            "Sperma membuahi sel telur",
+            "Terjadi kehamilan"
+        ],
+        answer: "A",
+        explanation: "Jika sel telur tidak dibuahi, sel telur akan mati dan dikeluarkan bersama lapisan rahim selama menstruasi."
+    },
+    {
+        question: "Apa yang dimaksud dengan menstruasi?",
+        options: [
+            "Proses pembuahan sel telur",
+            "Pelepasan sel telur dari ovarium",
+            "Pendarahan bulanan akibat luruhnya lapisan rahim",
+            "Pembentukan sperma"
+        ],
+        answer: "C",
+        explanation: "Menstruasi adalah pendarahan bulanan yang terjadi ketika lapisan rahim luruh karena tidak ada kehamilan."
+    },
+    {
+        question: "Proses pembuahan sel telur oleh sperma disebut?",
+        options: [
+            "Fertilasi",
+            "Ovulasi",
+            "Implantasi",
+            "Menstruasi"
+        ],
+        answer: "A",
+        explanation: "Pembuahan sel telur oleh sperma disebut fertilasi."
+    },
+    {
+        question: "Apa fungsi utama dari prostat pada pria?",
+        options: [
+            "Menghasilkan sperma",
+            "Menghasilkan cairan yang menyuburkan sperma",
+            "Menjaga keseimbangan hormon",
+            "Menyimpan sperma"
+        ],
+        answer: "B",
+        explanation: "Prostat menghasilkan cairan yang menyuburkan sperma dan membantu pergerakannya."
+    },
+    {
+        question: "Apa yang terjadi selama fase luteal pada siklus menstruasi?",
+        options: [
+            "Pelepasan sel telur dari ovarium",
+            "Pembentukan korpus luteum",
+            "Pendarahan menstruasi",
+            "Pembuahan sel telur"
+        ],
+        answer: "B",
+        explanation: "Pada fase luteal, korpus luteum terbentuk untuk memproduksi progesteron yang mendukung kehamilan."
+    },
+    {
+        question: "Di mana proses spermatogenesis terjadi?",
+        options: [
+            "Testis",
+            "Epididimis",
+            "Vas deferens",
+            "Prostat"
+        ],
+        answer: "A",
+        explanation: "Spermatogenesis terjadi di testis, tempat pembentukan sperma."
+    },
+    {
+        question: "Organ yang berfungsi untuk menampung dan melindungi janin selama kehamilan adalah?",
+        options: [
+            "Vagina",
+            "Rahim",
+            "Tuba falopi",
+            "Ovarium"
+        ],
+        answer: "B",
+        explanation: "Rahim adalah organ yang menampung dan melindungi janin selama kehamilan."
+    },
+    {
+        question: "Gangguan pada sistem reproduksi yang menyebabkan tidak terjadinya ovulasi disebut?",
+        options: [
+            "Endometriosis",
+            "Sistitis",
+            "Anovulasi",
+            "Kista ovarium"
+        ],
+        answer: "C",
+        explanation: "Anovulasi adalah kondisi di mana tidak terjadi ovulasi, sehingga sel telur tidak dilepaskan."
+    },
+    {
+        question: "Pada wanita, organ yang menghubungkan ovarium dan rahim disebut?",
+        options: [
+            "Vagina",
+            "Tuba falopi",
+            "Endometrium",
+            "Korpus luteum"
+        ],
+        answer: "B",
+        explanation: "Tuba falopi adalah saluran yang menghubungkan ovarium dengan rahim dan tempat terjadinya pembuahan."
+    },
+    {
+        question: "Gangguan pada sistem reproduksi pria yang menyebabkan pembesaran prostat disebut?",
+        options: [
+            "Prostatitis",
+            "Kanker prostat",
+            "Hipertrofi prostat jinak",
+            "Impotensi"
+        ],
+        answer: "C",
+        explanation: "Hipertrofi prostat jinak adalah pembesaran prostat yang terjadi seiring bertambahnya usia pada pria."
+    },
+    {
+        question: "Apa yang dimaksud dengan kehamilan ektopik?",
+        options: [
+            "Kehamilan di luar rahim",
+            "Kehamilan di dalam rahim",
+            "Kehamilan tanpa pembuahan",
+            "Kehamilan di ovarium"
+        ],
+        answer: "A",
+        explanation: "Kehamilan ektopik adalah kehamilan yang terjadi di luar rahim, seperti di tuba falopi."
+    },
+    {
+        question: "Kondisi yang ditandai dengan ketidakmampuan untuk hamil meskipun sudah mencoba selama setahun disebut?",
+        options: [
+            "Infertilitas",
+            "Menopause",
+            "Kanker ovarium",
+            "Anovulasi"
+        ],
+        answer: "A",
+        explanation: "Infertilitas adalah kondisi ketidakmampuan untuk hamil setelah berusaha selama setahun."
+    },
+    {
+        question: "Apa yang dimaksud dengan menopause pada wanita?",
+        options: [
+            "Proses berhentinya menstruasi dan kemampuan reproduksi",
+            "Proses pembuahan sel telur",
+            "Proses pembentukan sperma",
+            "Proses pembentukan korpus luteum"
+        ],
+        answer: "A",
+        explanation: "Menopause adalah berhentinya menstruasi dan kemampuan reproduksi pada wanita, biasanya terjadi pada usia 45-55 tahun."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

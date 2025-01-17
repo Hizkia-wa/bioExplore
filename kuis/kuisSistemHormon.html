@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Kelenjar endokrin yang berfungsi mengatur pertumbuhan tubuh adalah?",
+        options: [
+            "Hipofisis",
+            "Tiroid",
+            "Pankreas",
+            "Adrenal"
+        ],
+        answer: "A",
+        explanation: "Hipofisis mengeluarkan hormon pertumbuhan yang berfungsi mengatur pertumbuhan tubuh."
+    },
+    {
+        question: "Hormon yang berfungsi mengatur metabolisme tubuh adalah?",
+        options: [
+            "Insulin",
+            "Adrenalin",
+            "Tiroksin",
+            "Hormon pertumbuhan"
+        ],
+        answer: "C",
+        explanation: "Tiroksin yang dihasilkan oleh kelenjar tiroid berfungsi mengatur metabolisme tubuh."
+    },
+    {
+        question: "Kelenjar yang menghasilkan hormon insulin adalah?",
+        options: [
+            "Tiroid",
+            "Hipofisis",
+            "Pankreas",
+            "Adrenal"
+        ],
+        answer: "C",
+        explanation: "Pankreas menghasilkan hormon insulin yang mengatur kadar gula darah."
+    },
+    {
+        question: "Hormon yang berfungsi meningkatkan detak jantung dan tekanan darah adalah?",
+        options: [
+            "Adrenalin",
+            "Insulin",
+            "Hormon pertumbuhan",
+            "Tiroksin"
+        ],
+        answer: "A",
+        explanation: "Adrenalin yang dihasilkan oleh kelenjar adrenal berfungsi meningkatkan detak jantung dan tekanan darah."
+    },
+    {
+        question: "Gangguan yang disebabkan oleh kekurangan hormon insulin adalah?",
+        options: [
+            "Gigantisme",
+            "Diabetes mellitus",
+            "Hipotiroidisme",
+            "Cushing's syndrome"
+        ],
+        answer: "B",
+        explanation: "Diabetes mellitus adalah gangguan yang terjadi akibat kekurangan hormon insulin."
+    },
+    {
+        question: "Kelenjar yang terletak di bawah otak dan mengendalikan kelenjar endokrin lainnya adalah?",
+        options: [
+            "Tiroid",
+            "Hipofisis",
+            "Adrenal",
+            "Pankreas"
+        ],
+        answer: "B",
+        explanation: "Hipofisis terletak di bawah otak dan berfungsi mengendalikan kelenjar endokrin lainnya."
+    },
+    {
+        question: "Hormon pertumbuhan berfungsi untuk?",
+        options: [
+            "Mengatur metabolisme tubuh",
+            "Meningkatkan tekanan darah",
+            "Membantu proses pertumbuhan tubuh",
+            "Mengatur kadar gula darah"
+        ],
+        answer: "C",
+        explanation: "Hormon pertumbuhan berfungsi untuk merangsang pertumbuhan tubuh."
+    },
+    {
+        question: "Kelebihan hormon pertumbuhan pada masa kanak-kanak dapat menyebabkan gangguan?",
+        options: [
+            "Diabetes mellitus",
+            "Gigantisme",
+            "Hipotiroidisme",
+            "Cushing's syndrome"
+        ],
+        answer: "B",
+        explanation: "Kelebihan hormon pertumbuhan pada masa kanak-kanak dapat menyebabkan gigantisme, yaitu pertumbuhan tubuh yang berlebihan."
+    },
+    {
+        question: "Kelenjar yang menghasilkan hormon adrenalin adalah?",
+        options: [
+            "Hipofisis",
+            "Tiroid",
+            "Pankreas",
+            "Adrenal"
+        ],
+        answer: "D",
+        explanation: "Kelenjar adrenal menghasilkan hormon adrenalin yang berperan dalam respons tubuh terhadap stres."
+    },
+    {
+        question: "Gangguan yang ditandai dengan kadar gula darah yang tinggi akibat gangguan hormon insulin disebut?",
+        options: [
+            "Diabetes mellitus",
+            "Gigantisme",
+            "Hipotiroidisme",
+            "Cushing's syndrome"
+        ],
+        answer: "A",
+        explanation: "Diabetes mellitus adalah gangguan metabolisme yang ditandai dengan kadar gula darah tinggi akibat kekurangan hormon insulin."
+    },
+    {
+        question: "Hormon tiroid berfungsi mengatur?",
+        options: [
+            "Metabolisme tubuh",
+            "Pertumbuhan tubuh",
+            "Kadar gula darah",
+            "Detak jantung"
+        ],
+        answer: "A",
+        explanation: "Hormon tiroid berfungsi mengatur metabolisme tubuh dan proses pembentukan energi."
+    },
+    {
+        question: "Kekurangan hormon tiroid pada anak-anak dapat menyebabkan gangguan?",
+        options: [
+            "Gigantisme",
+            "Kretinisme",
+            "Diabetes mellitus",
+            "Cushing's syndrome"
+        ],
+        answer: "B",
+        explanation: "Kekurangan hormon tiroid pada anak-anak dapat menyebabkan kretinisme, yaitu gangguan perkembangan fisik dan mental."
+    },
+    {
+        question: "Pankreas mengeluarkan hormon yang berfungsi mengatur kadar gula darah, yaitu?",
+        options: [
+            "Insulin",
+            "Adrenalin",
+            "Hormon pertumbuhan",
+            "Tiroksin"
+        ],
+        answer: "A",
+        explanation: "Pankreas menghasilkan hormon insulin yang berfungsi menurunkan kadar gula darah."
+    },
+    {
+        question: "Kelenjar hipofisis menghasilkan hormon yang mengatur fungsi kelenjar?",
+        options: [
+            "Pankreas",
+            "Adrenal",
+            "Tiroid",
+            "Semua jawaban benar"
+        ],
+        answer: "D",
+        explanation: "Kelenjar hipofisis menghasilkan hormon yang mengatur fungsi kelenjar tiroid, adrenal, dan pankreas."
+    },
+    {
+        question: "Apa yang menyebabkan diabetes mellitus tipe 1?",
+        options: [
+            "Kekurangan produksi insulin oleh pankreas",
+            "Kelebihan produksi insulin oleh pankreas",
+            "Kekurangan hormon tiroid",
+            "Kelebihan hormon pertumbuhan"
+        ],
+        answer: "A",
+        explanation: "Diabetes mellitus tipe 1 disebabkan oleh kekurangan produksi insulin oleh pankreas."
+    },
+    {
+        question: "Kondisi kelebihan hormon adrenalin dapat menyebabkan?",
+        options: [
+            "Penurunan tekanan darah",
+            "Peningkatan detak jantung",
+            "Kekurangan energi",
+            "Penurunan metabolisme tubuh"
+        ],
+        answer: "B",
+        explanation: "Kelebihan hormon adrenalin dapat menyebabkan peningkatan detak jantung dan tekanan darah."
+    },
+    {
+        question: "Gigantisme pada anak disebabkan oleh?",
+        options: [
+            "Kekurangan hormon pertumbuhan",
+            "Kelebihan hormon insulin",
+            "Kelebihan hormon pertumbuhan",
+            "Kekurangan hormon adrenalin"
+        ],
+        answer: "C",
+        explanation: "Gigantisme pada anak disebabkan oleh kelebihan hormon pertumbuhan yang merangsang pertumbuhan berlebihan."
+    },
+    {
+        question: "Kekurangan hormon insulin dapat menyebabkan gangguan?",
+        options: [
+            "Diabetes mellitus",
+            "Gigantisme",
+            "Hipotiroidisme",
+            "Cushing's syndrome"
+        ],
+        answer: "A",
+        explanation: "Kekurangan hormon insulin menyebabkan diabetes mellitus, yaitu gangguan metabolisme yang ditandai dengan kadar gula darah tinggi."
+    },
+    {
+        question: "Hormon yang berfungsi meningkatkan metabolisme tubuh adalah?",
+        options: [
+            "Adrenalin",
+            "Tiroksin",
+            "Insulin",
+            "Hormon pertumbuhan"
+        ],
+        answer: "B",
+        explanation: "Tiroksin yang dihasilkan oleh kelenjar tiroid berfungsi meningkatkan metabolisme tubuh."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

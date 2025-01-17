@@ -1,0 +1,124 @@
+/* CSS untuk referensi halaman HTML */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #388e3c, #43a047;
+    padding: 20px;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar .nav-links li {
+    margin-right: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.references {
+    padding: 20px;
+}
+
+.semester {
+    margin-bottom: 30px;
+}
+
+.semester h2 {
+    font-size: 1.8em;
+    color: #0056b3;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 5px;
+}
+
+.reference-card {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.reference-card h3 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin: 0 0 10px;
+}
+
+.reference-card p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+
+.reference-card .read-more {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.reference-card .read-more:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    text-align: center;
+    background-color: #f1f1f1;
+    color: #555;
+    padding: 15px 10px;
+    font-size: 0.9em;
+    border-top: 1px solid #ddd;
+}
+
+.footer p {
+    margin: 0;
+}

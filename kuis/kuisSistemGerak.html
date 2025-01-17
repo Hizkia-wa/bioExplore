@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Tulang yang memiliki bentuk panjang seperti pipa disebut?",
+        options: [
+            "Tulang pipih",
+            "Tulang panjang",
+            "Tulang pendek",
+            "Tulang tidak beraturan"
+        ],
+        answer: "B",
+        explanation: "Tulang panjang memiliki bentuk seperti pipa dan berfungsi untuk penopang tubuh dan pergerakan."
+    },
+    {
+        question: "Sendi yang memungkinkan gerakan ke segala arah disebut?",
+        options: [
+            "Sendi engsel",
+            "Sendi peluru",
+            "Sendi pelana",
+            "Sendi putar"
+        ],
+        answer: "B",
+        explanation: "Sendi peluru memungkinkan gerakan ke segala arah, seperti pada bahu dan panggul."
+    },
+    {
+        question: "Bagian otot yang terdiri dari unit-unit kontraktil disebut?",
+        options: [
+            "Sarkoplasma",
+            "Sarkomer",
+            "Miofibril",
+            "Sarkolema"
+        ],
+        answer: "B",
+        explanation: "Sarkomer adalah unit kontraktil dasar pada otot yang terdiri dari aktin dan miosin."
+    },
+    {
+        question: "Tulang tengkorak termasuk jenis tulang?",
+        options: [
+            "Panjang",
+            "Pendek",
+            "Pipih",
+            "Tidak beraturan"
+        ],
+        answer: "C",
+        explanation: "Tulang tengkorak termasuk tulang pipih yang melindungi organ di dalamnya."
+    },
+    {
+        question: "Penyakit yang disebabkan oleh penurunan kepadatan tulang sehingga tulang menjadi rapuh adalah?",
+        options: [
+            "Rakhitis",
+            "Osteoporosis",
+            "Skoliosis",
+            "Artritis"
+        ],
+        answer: "B",
+        explanation: "Osteoporosis disebabkan oleh penurunan kepadatan tulang, sering terjadi pada lansia."
+    },
+    {
+        question: "Mekanisme kerja otot melibatkan interaksi antara?",
+        options: [
+            "Miofibril dan sarkoplasma",
+            "Aktin dan miosin",
+            "Sarkomer dan sarkolema",
+            "Sarkoplasma dan sarkomer"
+        ],
+        answer: "B",
+        explanation: "Interaksi antara aktin dan miosin menghasilkan kontraksi dan relaksasi otot."
+    },
+    {
+        question: "Contoh sendi engsel adalah?",
+        options: [
+            "Sendi bahu",
+            "Sendi lutut",
+            "Sendi leher",
+            "Sendi panggul"
+        ],
+        answer: "B",
+        explanation: "Sendi engsel memungkinkan gerakan satu arah seperti pada lutut dan siku."
+    },
+    {
+        question: "Gangguan pada sistem gerak yang menyebabkan tulang melengkung ke samping adalah?",
+        options: [
+            "Rakhitis",
+            "Osteoporosis",
+            "Skoliosis",
+            "Artritis"
+        ],
+        answer: "C",
+        explanation: "Skoliosis adalah kondisi tulang belakang melengkung ke samping."
+    },
+    {
+        question: "Tulang yang berbentuk tidak beraturan dapat ditemukan pada?",
+        options: [
+            "Lengan atas",
+            "Tengkorak",
+            "Tulang belakang",
+            "Tulang rusuk"
+        ],
+        answer: "C",
+        explanation: "Tulang belakang termasuk tulang tidak beraturan karena bentuknya kompleks."
+    },
+    {
+        question: "Proses relaksasi otot terjadi ketika?",
+        options: [
+            "Aktin dan miosin saling menjauh",
+            "Sarkomer memendek",
+            "Miofibril menegang",
+            "Sarkolema berkontraksi"
+        ],
+        answer: "A",
+        explanation: "Relaksasi otot terjadi ketika aktin dan miosin saling menjauh, mengembalikan panjang otot."
+    },
+    {
+        question: "Sendi pelana memungkinkan gerakan ke segala arah. (Benar/Salah)",
+        options: ["Benar", "Salah"],
+        answer: "Salah",
+        explanation: "Sendi pelana hanya memungkinkan gerakan dua arah, seperti pada ibu jari."
+    },
+    {
+        question: "Rakhitis adalah gangguan tulang akibat kekurangan vitamin C. (Benar/Salah)",
+        options: ["Benar", "Salah"],
+        answer: "Salah",
+        explanation: "Rakhitis disebabkan oleh kekurangan vitamin D, bukan vitamin C."
+    },
+    {
+        question: "Tulang rusuk termasuk jenis tulang pipih. (Benar/Salah)",
+        options: ["Benar", "Salah"],
+        answer: "Benar",
+        explanation: "Tulang rusuk adalah contoh tulang pipih yang melindungi organ di rongga dada."
+    },
+    {
+        question: "Miofibril terdiri dari sarkomer yang saling berurutan. (Benar/Salah)",
+        options: ["Benar", "Salah"],
+        answer: "Benar",
+        explanation: "Miofibril adalah kumpulan sarkomer yang tersusun secara berurutan."
+    },
+    {
+        question: "Sendi putar memungkinkan gerakan memutar seperti pada leher. (Benar/Salah)",
+        options: ["Benar", "Salah"],
+        answer: "Benar",
+        explanation: "Sendi putar memungkinkan gerakan rotasi seperti pada sendi antara tulang tengkorak dan leher."
+    },
+    {
+        question: "Tulang panjang memiliki fungsi utama untuk __________.",
+        options: [
+            "Melindungi organ vital",
+            "Menopang tubuh dan pergerakan",
+            "Menyimpan mineral",
+            "Menghasilkan sel darah"
+        ],
+        answer: "B",
+        explanation: "Tulang panjang berfungsi menopang tubuh dan membantu pergerakan."
+    },
+    {
+        question: "Struktur otot yang menjadi tempat berlangsungnya kontraksi adalah __________.",
+        options: [
+            "Sarkomer",
+            "Miofibril",
+            "Sarkoplasma",
+            "Aktin dan miosin"
+        ],
+        answer: "A",
+        explanation: "Sarkomer adalah tempat berlangsungnya kontraksi otot."
+    },
+    {
+        question: "Osteoporosis dapat dicegah dengan mengonsumsi makanan yang kaya __________.",
+        options: [
+            "Vitamin C",
+            "Vitamin D dan kalsium",
+            "Protein",
+            "Karbohidrat"
+        ],
+        answer: "B",
+        explanation: "Vitamin D dan kalsium penting untuk menjaga kepadatan tulang."
+    },
+    {
+        question: "Sarkomer terdiri dari dua jenis filamen, yaitu __________ dan __________.",
+        options: [
+            "Miofibril dan miofilamen",
+            "Aktin dan miosin",
+            "Sarkoplasma dan sarkolema",
+            "Kalsium dan fosfat"
+        ],
+        answer: "B",
+        explanation: "Sarkomer terdiri dari filamen tipis (aktin) dan filamen tebal (miosin)."
+    },
+    {
+        question: "Sendi __________ memungkinkan gerakan seperti membuka dan menutup pintu.",
+        options: [
+            "Peluru",
+            "Engsel",
+            "Pelana",
+            "Putar"
+        ],
+        answer: "B",
+        explanation: "Sendi engsel memungkinkan gerakan seperti membuka dan menutup pintu."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

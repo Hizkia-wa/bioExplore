@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Organisasi Kehidupan</title>
+    <link rel="stylesheet" href="../css/kuisnya.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BIOEXPLORE</div>
+            <ul class="nav-links">
+                <li><a href="../beranda.html">Beranda</a></li>
+                <li><a href="../materi">Materi</a></li>
+                <li><a href="../video">Video Pembelajaran</a></li>
+                <li class="dropdown">
+                    <a href="#">Bank Soal</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Kuis.html">Soal Latihan</a></li>
+                        <li><a href="../tryout.html">Try Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <div class="quiz-container">
+            <h1 class="quiz-header">Kuis: Sistem Organisasi Kehidupan</h1>
+        </header>
+
+        <main class="quiz-main">
+            <div class="question-navigation">
+                <label for="question-selector">Pilih Nomor Soal:</label>
+                <select id="question-selector">
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+            </div>
+
+            <div class="question-display">
+                <p id="question-text">Soal akan tampil di sini...</p>
+                <div class="options">
+                    <button class="option" data-option="A">A. Pilihan A</button>
+                    <button class="option" data-option="B">B. Pilihan B</button>
+                    <button class="option" data-option="C">C. Pilihan C</button>
+                    <button class="option" data-option="D">D. Pilihan D</button>
+                    <button class="option" data-option="E">E. Pilihan E</button>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p id="explanation-text">Pembahasan akan tampil di sini...</p>
+            </div>
+        </main>
+
+        <footer class="quiz-footer">
+            <button id="prev-question">Sebelumnya</button>
+            <button id="next-question">Selanjutnya</button>
+        </footer>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama organ ginjal dalam sistem ekskresi?",
+        options: [
+            "Mengeluarkan karbon dioksida",
+            "Menyaring darah dan membentuk urin",
+            "Mengatur suhu tubuh",
+            "Menghasilkan hormon insulin",
+            "Melindungi tubuh dari infeksi"
+        ],
+        answer: "B",
+        explanation: "Ginjal bertugas menyaring darah untuk membuang limbah dan membentuk urin."
+    },
+    {
+        question: "Apa nama struktur ginjal yang berperan sebagai unit penyaring darah?",
+        options: [
+            "Alveolus",
+            "Nefron",
+            "Tubulus",
+            "Glomerulus",
+            "Katup ginjal"
+        ],
+        answer: "B",
+        explanation: "Nefron adalah unit fungsional ginjal yang menyaring darah dan membentuk urin."
+    },
+    {
+        question: "Proses apa yang terjadi di glomerulus dalam pembentukan urin?",
+        options: [
+            "Reabsorpsi",
+            "Filtrasi",
+            "Augmentasi",
+            "Sekresi",
+            "Absorpsi"
+        ],
+        answer: "B",
+        explanation: "Di glomerulus, darah difiltrasi untuk memisahkan limbah dan cairan dari komponen darah lainnya."
+    },
+    {
+        question: "Apa yang terjadi selama proses reabsorpsi di tubulus ginjal?",
+        options: [
+            "Zat-zat penting dalam darah disaring keluar.",
+            "Zat-zat berguna seperti air dan glukosa diserap kembali ke darah.",
+            "Urin dikeluarkan dari tubuh.",
+            "Limbah metabolisme diubah menjadi urin.",
+            "Zat beracun ditambahkan ke filtrat."
+        ],
+        answer: "B",
+        explanation: "Reabsorpsi adalah proses penyerapan kembali zat-zat penting ke dalam darah dari filtrat."
+    },
+    {
+        question: "Apa fungsi utama hati dalam sistem ekskresi?",
+        options: [
+            "Menyaring darah dari limbah nitrogen",
+            "Mengeluarkan urin",
+            "Menghasilkan karbon dioksida",
+            "Mengatur kadar oksigen dalam darah",
+            "Menghasilkan hemoglobin"
+        ],
+        answer: "A",
+        explanation: "Hati membantu mengeluarkan limbah nitrogen dan racun dari tubuh melalui proses detoksifikasi."
+    },
+    {
+        question: "Apa nama zat yang dihasilkan hati sebagai produk ekskresi?",
+        options: [
+            "Urea",
+            "Karbon dioksida",
+            "Amilase",
+            "Glukosa",
+            "Asam urat"
+        ],
+        answer: "A",
+        explanation: "Hati menghasilkan urea sebagai produk ekskresi dari pemecahan protein."
+    },
+    {
+        question: "Apa fungsi utama kulit dalam sistem ekskresi?",
+        options: [
+            "Menghasilkan hormon",
+            "Mengeluarkan keringat untuk membuang limbah",
+            "Mengatur tekanan darah",
+            "Menyaring darah",
+            "Menyimpan mineral"
+        ],
+        answer: "B",
+        explanation: "Kulit berfungsi mengeluarkan keringat yang mengandung limbah seperti garam dan urea."
+    },
+    {
+        question: "Apa fungsi organ paru-paru dalam sistem ekskresi?",
+        options: [
+            "Menghasilkan urea",
+            "Mengeluarkan karbon dioksida dan uap air",
+            "Menyaring darah",
+            "Mengatur suhu tubuh",
+            "Menghasilkan hormon"
+        ],
+        answer: "B",
+        explanation: "Paru-paru mengeluarkan karbon dioksida dan uap air sebagai produk sisa metabolisme."
+    },
+    {
+        question: "Apa yang dimaksud dengan augmentasi dalam proses pembentukan urin?",
+        options: [
+            "Penyerapan kembali air dan zat berguna",
+            "Penambahan zat-zat beracun ke filtrat",
+            "Pemrosesan filtrat menjadi urin",
+            "Penyesuaian kadar glukosa dalam darah",
+            "Pembuangan urin dari tubuh"
+        ],
+        answer: "B",
+        explanation: "Augmentasi adalah proses di mana zat-zat beracun atau tidak diperlukan ditambahkan ke filtrat."
+    },
+    {
+        question: "Apa penyebab utama gagal ginjal?",
+        options: [
+            "Infeksi bakteri",
+            "Kerusakan pada nefron",
+            "Produksi urin berlebih",
+            "Ketidakseimbangan hormon",
+            "Peningkatan tekanan darah"
+        ],
+        answer: "B",
+        explanation: "Gagal ginjal disebabkan oleh kerusakan pada nefron yang mengganggu fungsi penyaringan darah."
+    },
+    {
+        question: "Apa gejala umum batu ginjal?",
+        options: [
+            "Kesulitan bernapas",
+            "Nyeri hebat di punggung atau pinggang",
+            "Suhu tubuh rendah",
+            "Gangguan penglihatan",
+            "Kulit menjadi kering"
+        ],
+        answer: "B",
+        explanation: "Batu ginjal sering menyebabkan nyeri di punggung atau pinggang akibat penyumbatan saluran kemih."
+    },
+    {
+        question: "Apa nama cairan yang dihasilkan selama proses ekskresi di ginjal?",
+        options: [
+            "Keringat",
+            "Urin",
+            "Plasma",
+            "Hemoglobin",
+            "Empedu"
+        ],
+        answer: "B",
+        explanation: "Urin adalah cairan limbah yang dihasilkan oleh ginjal melalui proses filtrasi darah."
+    },
+    {
+        question: "Apa yang dimaksud dengan nefritis?",
+        options: [
+            "Peradangan pada hati",
+            "Peradangan pada ginjal",
+            "Kerusakan pada paru-paru",
+            "Infeksi pada kulit",
+            "Penyumbatan saluran kemih"
+        ],
+        answer: "B",
+        explanation: "Nefritis adalah peradangan pada ginjal yang dapat mengganggu fungsi penyaringan darah."
+    },
+    {
+        question: "Apa fungsi utama glomerulus dalam nefron?",
+        options: [
+            "Mengangkut urin ke kandung kemih",
+            "Menyaring darah",
+            "Menyerap kembali zat berguna",
+            "Mengatur pH darah",
+            "Menghasilkan hormon insulin"
+        ],
+        answer: "B",
+        explanation: "Glomerulus adalah bagian dari nefron yang berfungsi menyaring darah."
+    },
+    {
+        question: "Apa penyebab utama batu ginjal?",
+        options: [
+            "Kekurangan oksigen",
+            "Penumpukan mineral dan garam dalam ginjal",
+            "Infeksi bakteri",
+            "Kadar gula darah tinggi",
+            "Gangguan fungsi hati"
+        ],
+        answer: "B",
+        explanation: "Batu ginjal terbentuk karena penumpukan mineral dan garam yang mengkristal di ginjal."
+    },
+    {
+        question: "Di mana urin disimpan sebelum dikeluarkan dari tubuh?",
+        options: [
+            "Ginjal",
+            "Kandung kemih",
+            "Ureter",
+            "Uretra",
+            "Tubulus"
+        ],
+        answer: "B",
+        explanation: "Urin disimpan di kandung kemih sebelum dikeluarkan melalui uretra."
+    },
+    {
+        question: "Apa fungsi utama ureter dalam sistem ekskresi?",
+        options: [
+            "Menghubungkan ginjal dengan kandung kemih",
+            "Menyaring darah",
+            "Mengeluarkan urin dari tubuh",
+            "Mengatur kadar hormon",
+            "Mengangkut oksigen ke ginjal"
+        ],
+        answer: "A",
+        explanation: "Ureter adalah saluran yang menghubungkan ginjal dengan kandung kemih."
+    },
+    {
+        question: "Apa yang menyebabkan warna urin menjadi kuning?",
+        options: [
+            "Kadar gula dalam darah",
+            "Zat pewarna empedu",
+            "Hemoglobin",
+            "Protein dalam urin",
+            "Zat beracun"
+        ],
+        answer: "B",
+        explanation: "Warna kuning urin disebabkan oleh zat pewarna empedu seperti urobilin."
+    },
+    {
+        question: "Apa dampak dari kerusakan tubulus ginjal?",
+        options: [
+            "Filtrasi darah terhenti",
+            "Penyerapan kembali zat berguna terganggu",
+            "Produksi hormon meningkat",
+            "Kadar oksigen dalam darah menurun",
+            "Tekanan darah meningkat"
+        ],
+        answer: "B",
+        explanation: "Kerusakan tubulus ginjal mengganggu reabsorpsi zat berguna seperti air dan glukosa."
+    },
+    {
+        question: "Apa fungsi utama alveolus dalam sistem ekskresi?",
+        options: [
+            "Mengeluarkan karbon dioksida",
+            "Menyaring darah",
+            "Membentuk urin",
+            "Menghasilkan urea",
+            "Mengatur kadar garam"
+        ],
+        answer: "A",
+        explanation: "Alveolus di paru-paru berfungsi mengeluarkan karbon dioksida sebagai limbah respirasi."
+    }
+];
+
+        const questionText = document.getElementById("question-text");
+        const options = document.querySelectorAll(".option");
+        const explanationText = document.getElementById("explanation-text");
+        const questionSelector = document.getElementById("question-selector");
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionText.textContent = question.question;
+            options.forEach((option, i) => {
+                option.textContent = `${String.fromCharCode(65 + i)}. ${question.options[i]}`;
+                option.classList.remove("correct", "incorrect");
+            });
+            explanationText.textContent = "Pembahasan akan tampil di sini...";
+        }
+
+        function populateQuestionSelector() {
+            questions.forEach((_, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Soal ${index + 1}`;
+                questionSelector.appendChild(option);
+            });
+        }
+
+        document.getElementById("prev-question").addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        document.getElementById("next-question").addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                questionSelector.value = currentQuestionIndex;
+            }
+        });
+
+        questionSelector.addEventListener("change", (e) => {
+            currentQuestionIndex = parseInt(e.target.value, 10);
+            loadQuestion(currentQuestionIndex);
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (e) => {
+                const selectedOption = e.target.getAttribute("data-option");
+                if (selectedOption === questions[currentQuestionIndex].answer) {
+                    e.target.classList.add("correct");
+                } else {
+                    e.target.classList.add("incorrect");
+                }
+                explanationText.textContent = questions[currentQuestionIndex].explanation;
+            });
+        });
+
+        populateQuestionSelector();
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
