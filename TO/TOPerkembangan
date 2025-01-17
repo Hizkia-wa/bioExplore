@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa yang dimaksud dengan perkembangan manusia?",
+        options: ["Proses perubahan fisik yang dapat diukur", "Proses perubahan yang bersifat psikologis dan sosial", "Proses pertumbuhan fisik yang cepat", "Proses perubahan hanya dalam aspek fisik", "Proses pematangan organ tubuh saja"],
+        correct: 1,
+        explanation: "Perkembangan manusia mencakup perubahan psikologis, sosial, dan emosional yang terjadi seiring waktu, serta mempengaruhi kepribadian dan kemampuan individu."
+    },
+    {
+        question: "Apa yang dimaksud dengan fase kritis dalam perkembangan manusia?",
+        options: ["Waktu ketika perkembangan fisik mencapai puncaknya", "Periode di mana interaksi sosial sangat berpengaruh pada perkembangan", "Waktu di mana pertumbuhan organ tubuh terjadi secara maksimal", "Periode yang sangat sensitif terhadap gangguan lingkungan", "Periode dimana semua perkembangan berjalan normal"],
+        correct: 3,
+        explanation: "Fase kritis adalah periode di mana individu sangat sensitif terhadap faktor lingkungan yang dapat mempengaruhi perkembangan fisik dan mental secara signifikan."
+    },
+    {
+        question: "Bagaimana peran faktor genetik dalam perkembangan manusia?",
+        options: ["Mengatur hanya perkembangan fisik", "Mengatur pola makan dan aktivitas fisik", "Hanya berperan pada pertumbuhan otak", "Menentukan karakteristik fisik dan psikologis tertentu", "Tidak berpengaruh terhadap perkembangan"],
+        correct: 3,
+        explanation: "Faktor genetik berperan penting dalam menentukan karakteristik fisik dan psikologis individu, termasuk warna kulit, tinggi badan, dan potensi kecerdasan."
+    },
+    {
+        question: "Pada tahap perkembangan anak, apa yang paling banyak dipengaruhi oleh faktor lingkungan?",
+        options: ["Pertumbuhan tulang", "Perkembangan bahasa", "Peningkatan berat badan", "Perkembangan otak", "Perkembangan hormon"],
+        correct: 1,
+        explanation: "Perkembangan bahasa sangat dipengaruhi oleh faktor lingkungan, seperti interaksi sosial dan stimulasi verbal dari orang tua atau lingkungan sekitar."
+    },
+    {
+        question: "Pada usia berapa masa pertumbuhan fisik anak biasanya mencapai puncaknya?",
+        options: ["2-3 tahun", "4-5 tahun", "6-7 tahun", "10-12 tahun", "16-18 tahun"],
+        correct: 3,
+        explanation: "Masa pertumbuhan fisik anak biasanya mencapai puncaknya sekitar usia 10 hingga 12 tahun, setelah itu proses pertumbuhan melambat."
+    },
+    {
+        question: "Apa yang dimaksud dengan plasticity dalam perkembangan otak?",
+        options: ["Kemampuan otak untuk mengingat informasi", "Kemampuan otak untuk berkembang tanpa batas", "Kemampuan otak untuk mengalami perubahan struktural dan fungsional", "Kemampuan otak untuk beradaptasi dengan stres", "Kemampuan otak untuk menghasilkan neurotransmiter"],
+        correct: 2,
+        explanation: "Plasticity adalah kemampuan otak untuk beradaptasi dengan pengalaman dan lingkungan, termasuk mengubah strukturnya untuk memaksimalkan fungsinya."
+    },
+    {
+        question: "Apa yang terjadi pada tubuh manusia selama masa pubertas?",
+        options: ["Pertumbuhan tubuh melambat", "Perubahan hormon menyebabkan perkembangan seksual sekunder", "Peningkatan produksi insulin", "Peningkatan produksi hormon tiroid", "Penurunan massa otot"],
+        correct: 1,
+        explanation: "Selama masa pubertas, perubahan hormon yang signifikan menyebabkan perkembangan seksual sekunder seperti pertumbuhan payudara pada perempuan dan perubahan suara pada laki-laki."
+    },
+    {
+        question: "Apa yang dimaksud dengan pertumbuhan longitudinal pada masa kanak-kanak?",
+        options: ["Peningkatan berat badan yang cepat", "Pertumbuhan tinggi badan yang cepat", "Peningkatan kekuatan otot", "Pertumbuhan kemampuan motorik halus", "Peningkatan keterampilan sosial"],
+        correct: 1,
+        explanation: "Pertumbuhan longitudinal merujuk pada peningkatan tinggi badan yang cepat pada masa kanak-kanak, terutama sebelum masa pubertas."
+    },
+    {
+        question: "Apa yang dimaksud dengan perkembangan kognitif menurut Jean Piaget?",
+        options: ["Proses perubahan kemampuan fisik tubuh", "Proses perubahan dalam cara individu memahami dunia sekitar", "Proses pembelajaran sosial melalui interaksi", "Proses perubahan hormon dalam tubuh", "Proses pengembangan kepercayaan diri"],
+        correct: 1,
+        explanation: "Jean Piaget berfokus pada perkembangan kognitif yang melibatkan perubahan cara anak memahami dan berinteraksi dengan dunia sekitar mereka."
+    },
+    {
+        question: "Apa yang dimaksud dengan fase perkembangan sensorimotor pada bayi?",
+        options: ["Perkembangan kemampuan berbicara", "Pengembangan kontrol motorik halus", "Pengalaman belajar melalui indera dan gerakan tubuh", "Pengalaman belajar melalui pengamatan sosial", "Pengembangan keterampilan kognitif tinggi"],
+        correct: 2,
+        explanation: "Fase sensorimotor menurut Piaget adalah periode di mana bayi mengembangkan pemahaman tentang dunia melalui indera dan gerakan tubuh mereka."
+    },
+    {
+        question: "Apa yang dimaksud dengan perkembangan sosial pada anak-anak?",
+        options: ["Proses memahami peran-peran sosial di masyarakat", "Proses peningkatan keterampilan berbicara", "Perkembangan kemampuan fisik tubuh", "Proses belajar mengenali emosi", "Proses pematangan fisik tubuh"],
+        correct: 0,
+        explanation: "Perkembangan sosial melibatkan kemampuan anak untuk memahami peran sosial, bekerja sama dengan orang lain, dan mengembangkan keterampilan dalam berinteraksi dengan masyarakat."
+    },
+    {
+        question: "Apa yang dimaksud dengan teori perkembangan moral Kohlberg?",
+        options: ["Teori yang fokus pada perubahan dalam kemampuan fisik tubuh", "Teori yang menjelaskan tahapan perkembangan bahasa", "Teori yang menjelaskan bagaimana individu berkembang dalam memahami moralitas dan keadilan", "Teori tentang pertumbuhan otak", "Teori tentang perkembangan keterampilan motorik"],
+        correct: 2,
+        explanation: "Lawrence Kohlberg mengembangkan teori yang menjelaskan perkembangan moral manusia melalui tiga level: pre-konvensional, konvensional, dan pasca-konvensional."
+    },
+    {
+        question: "Pada tahap perkembangan apa anak mulai mengembangkan pemahaman tentang konsep waktu dan ruang?",
+        options: ["Fase sensorimotor", "Fase operasional konkret", "Fase pra-konvensional", "Fase operasional formal", "Fase imajinatif"],
+        correct: 1,
+        explanation: "Pada tahap operasional konkret (sekitar usia 7-11 tahun), anak mulai memahami konsep-konsep seperti waktu, ruang, dan hubungan sebab akibat."
+    },
+    {
+        question: "Apa yang dimaksud dengan periode emas dalam perkembangan otak?",
+        options: ["Waktu di mana otak manusia mencapai puncaknya", "Periode sensitif di mana otak sangat mudah dipengaruhi oleh lingkungan", "Periode di mana anak dapat mempelajari keterampilan fisik lebih cepat", "Periode pubertas", "Waktu di mana otak mulai mengalami degenerasi"],
+        correct: 1,
+        explanation: "Periode emas merujuk pada periode dalam perkembangan otak, terutama pada usia dini, ketika otak sangat sensitif terhadap stimulasi dan pembelajaran."
+    },
+    {
+        question: "Apa yang dimaksud dengan konsep 'nature vs. nurture' dalam perkembangan manusia?",
+        options: ["Pertanyaan tentang apakah perilaku manusia sepenuhnya ditentukan oleh lingkungan atau genetika", "Proses pematangan fisik dalam tubuh manusia", "Perdebatan mengenai peran hormon dalam perkembangan seksual", "Pertanyaan tentang seberapa besar peran teknologi dalam pembelajaran", "Penyelidikan tentang pengaruh obat-obatan pada perkembangan otak"],
+        correct: 0,
+        explanation: "'Nature vs. nurture' adalah debat tentang seberapa besar faktor genetik ('nature') dan pengaruh lingkungan ('nurture') berperan dalam perkembangan manusia."
+    },
+    {
+        question: "Apa yang dimaksud dengan perkembangan fisik pada anak usia dini?",
+        options: ["Proses pembelajaran bahasa", "Peningkatan kemampuan motorik kasar dan halus", "Perubahan dalam pemahaman moral", "Peningkatan kapasitas kognitif", "Perkembangan dalam keterampilan sosial"],
+        correct: 1,
+        explanation: "Perkembangan fisik pada usia dini melibatkan peningkatan kemampuan motorik kasar (seperti berjalan) dan motorik halus (seperti memegang objek)."
+    },
+    {
+        question: "Apa yang menjadi fokus utama dalam perkembangan manusia pada masa dewasa muda?",
+        options: ["Perkembangan motorik halus", "Pencarian identitas dan pembentukan hubungan jangka panjang", "Penurunan kapasitas kognitif", "Pemahaman tentang moralitas", "Perubahan hormon"],
+        correct: 1,
+        explanation: "Pada masa dewasa muda, fokus utama adalah pencarian identitas dan pembentukan hubungan jangka panjang, baik dalam konteks profesional maupun pribadi."
+    },
+    {
+        question: "Apa yang dimaksud dengan teori perkembangan Erikson tentang 'identity vs. role confusion'?",
+        options: ["Perkembangan moral anak pada usia dini", "Konflik yang terjadi pada masa remaja terkait pencarian identitas diri", "Proses belajar sosial pada anak usia sekolah", "Peningkatan kemampuan fisik pada masa pubertas", "Perkembangan kemampuan berbicara pada balita"],
+        correct: 1,
+        explanation: "Teori Erikson tentang 'identity vs. role confusion' mengacu pada tantangan yang dihadapi remaja dalam membangun identitas diri yang stabil."
+    },
+    {
+        question: "Pada tahap perkembangan mana individu mulai mengembangkan pemikiran abstrak dan logis menurut Jean Piaget?",
+        options: ["Fase sensorimotor", "Fase operasional konkret", "Fase operasional formal", "Fase pra-konvensional", "Fase imajinatif"],
+        correct: 2,
+        explanation: "Pada fase operasional formal (usia 12 tahun ke atas), individu mulai mengembangkan kemampuan berpikir abstrak dan logis, termasuk pemecahan masalah yang lebih kompleks."
+    }
+];
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
