@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa fungsi utama ginjal dalam sistem ekskresi?",
+        options: ["Menyaring darah", "Menghasilkan enzim pencernaan", "Menyimpan glukosa", "Mengatur suhu tubuh", "Menyimpan air"],
+        correct: 0,
+        explanation: "Ginjal berfungsi untuk menyaring darah dan membuang limbah dalam bentuk urin."
+    },
+    {
+        question: "Apa nama struktur di ginjal yang bertanggung jawab untuk menyaring darah?",
+        options: ["Neuron", "Nephron", "Glomerulus", "Bowman's capsule", "Tubulus kolektivus"],
+        correct: 2,
+        explanation: "Glomerulus adalah struktur dalam nefron yang bertanggung jawab untuk menyaring darah."
+    },
+    {
+        question: "Manakah zat berikut yang tidak dikeluarkan melalui urin?",
+        options: ["Urea", "Glukosa", "Asam urat", "Kreatinin", "Amonia"],
+        correct: 1,
+        explanation: "Dalam kondisi normal, glukosa tidak ditemukan dalam urin karena diserap kembali di tubulus ginjal."
+    },
+    {
+        question: "Apa yang terjadi jika seseorang mengalami gagal ginjal?",
+        options: ["Produksi urin meningkat", "Tubuh kekurangan elektrolit", "Akumulasi limbah dalam darah", "Produksi hormon meningkat", "Tidak terjadi apa-apa"],
+        correct: 2,
+        explanation: "Gagal ginjal menyebabkan akumulasi limbah dalam darah karena ginjal tidak dapat menyaring darah dengan baik."
+    },
+    {
+        question: "Apa fungsi hati dalam sistem ekskresi?",
+        options: ["Menyaring darah", "Mengubah amonia menjadi urea", "Menyimpan urin", "Menghasilkan hormon insulin", "Mengatur kadar gula darah"],
+        correct: 1,
+        explanation: "Hati mengubah amonia menjadi urea yang kemudian dikeluarkan melalui urin."
+    },
+    {
+        question: "Apa nama proses di mana air diserap kembali di tubulus ginjal?",
+        options: ["Filtrasi", "Reabsorpsi", "Sekresi", "Ekskresi", "Difusi"],
+        correct: 1,
+        explanation: "Reabsorpsi adalah proses di mana air dan zat penting lainnya diserap kembali di tubulus ginjal."
+    },
+    {
+        question: "Apa peran ureter dalam sistem ekskresi?",
+        options: ["Menyimpan urin", "Mengalirkan urin dari ginjal ke kandung kemih", "Menyaring darah", "Mengatur tekanan darah", "Menghasilkan urin"],
+        correct: 1,
+        explanation: "Ureter adalah saluran yang membawa urin dari ginjal ke kandung kemih."
+    },
+    {
+        question: "Apa yang dimaksud dengan penyakit batu ginjal?",
+        options: ["Infeksi ginjal", "Pembentukan kristal mineral di ginjal", "Gagal ginjal", "Radang ginjal", "Kelainan bentuk ginjal"],
+        correct: 1,
+        explanation: "Batu ginjal adalah pembentukan kristal dari mineral dan garam di dalam ginjal."
+    },
+    {
+        question: "Bagaimana kulit berperan dalam sistem ekskresi?",
+        options: ["Mengeluarkan keringat", "Menghasilkan melanin", "Melindungi tubuh", "Mengatur suhu tubuh", "Menghasilkan minyak"],
+        correct: 0,
+        explanation: "Kulit mengeluarkan limbah melalui keringat yang mengandung air, garam, dan urea."
+    },
+    {
+        question: "Apa zat utama yang diekskresikan melalui paru-paru?",
+        options: ["Karbon dioksida", "Oksigen", "Amonia", "Urea", "Nitrogen"],
+        correct: 0,
+        explanation: "Paru-paru mengeluarkan karbon dioksida sebagai hasil dari respirasi seluler."
+    },
+    {
+        question: "Apa yang dimaksud dengan hemodialisis?",
+        options: ["Proses penyaringan darah di luar tubuh", "Pengangkatan ginjal", "Pemberian obat untuk gagal ginjal", "Pengganti fungsi hati", "Pemeriksaan kondisi ginjal"],
+        correct: 0,
+        explanation: "Hemodialisis adalah prosedur medis untuk menyaring darah di luar tubuh ketika ginjal tidak berfungsi."
+    },
+    {
+        question: "Apa yang terjadi jika kadar urea dalam darah terlalu tinggi?",
+        options: ["Hipoksia", "Uremia", "Diabetes", "Hipertensi", "Anemia"],
+        correct: 1,
+        explanation: "Uremia adalah kondisi di mana kadar urea dalam darah terlalu tinggi karena ginjal gagal mengeluarkannya."
+    },
+    {
+        question: "Apa nama struktur di kulit yang bertanggung jawab untuk menghasilkan keringat?",
+        options: ["Kelenjar sebaceous", "Kelenjar keringat", "Melanosit", "Folikel rambut", "Kelenjar minyak"],
+        correct: 1,
+        explanation: "Kelenjar keringat menghasilkan keringat yang membantu ekskresi dan mengatur suhu tubuh."
+    },
+    {
+        question: "Apa penyebab utama penyakit gagal ginjal kronis?",
+        options: ["Infeksi bakteri", "Tekanan darah tinggi dan diabetes", "Kurangnya olahraga", "Dehidrasi", "Kekurangan protein"],
+        correct: 1,
+        explanation: "Tekanan darah tinggi dan diabetes adalah penyebab utama gagal ginjal kronis."
+    },
+    {
+        question: "Apa yang dimaksud dengan homeostasis dalam konteks sistem ekskresi?",
+        options: ["Pengaturan kadar air dan garam dalam tubuh", "Pengeluaran limbah padat", "Pengaturan suhu tubuh", "Produksi hormon", "Pembentukan energi"],
+        correct: 0,
+        explanation: "Homeostasis adalah keseimbangan internal tubuh, termasuk pengaturan kadar air dan garam oleh ginjal."
+    },
+    {
+        question: "Apa fungsi utama dari kandung kemih?",
+        options: ["Menyimpan urin", "Menyaring darah", "Menghasilkan urin", "Mengeluarkan keringat", "Mengatur tekanan darah"],
+        correct: 0,
+        explanation: "Kandung kemih berfungsi untuk menyimpan urin sebelum dikeluarkan dari tubuh."
+    },
+    {
+        question: "Apa nama proses pengeluaran urin dari tubuh?",
+        options: ["Ekskresi", "Filtrasi", "Sekresi", "Miktsi", "Reabsorpsi"],
+        correct: 3,
+        explanation: "Miktsi adalah istilah medis untuk proses pengeluaran urin dari tubuh."
+    },
+    {
+        question: "Apa zat utama yang ditemukan dalam keringat?",
+        options: ["Urea", "Asam urat", "Garam", "Glukosa", "Protein"],
+        correct: 2,
+        explanation: "Keringat terutama mengandung garam, air, dan sedikit urea."
+    },
+    {
+        question: "Apa peran utama dari asam urat dalam sistem ekskresi?",
+        options: ["Sebagai limbah nitrogen", "Sebagai enzim pencernaan", "Sebagai sumber energi", "Sebagai penyangga pH", "Sebagai hormon"],
+        correct: 0,
+        explanation: "Asam urat adalah limbah nitrogen yang dihasilkan dari metabolisme purin dan dikeluarkan melalui urin."
+    },
+    {
+        question: "Apa yang menyebabkan urin berwarna kuning?",
+        options: ["Kandungan urobilin", "Kandungan glukosa", "Kandungan protein", "Kandungan amonia", "Kandungan sel darah merah"],
+        correct: 0,
+        explanation: "Urobilin, yang berasal dari pemecahan hemoglobin, memberi warna kuning pada urin."
+    }
+];
+
+
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
+
+
+
+
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
