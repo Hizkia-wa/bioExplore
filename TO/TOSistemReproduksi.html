@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa nama proses pembelahan sel yang menghasilkan gamet pada manusia?",
+        options: ["Mitosis", "Meiosis", "Fagositosis", "Endositosis", "Transduksi"],
+        correct: 1,
+        explanation: "Proses pembelahan sel yang menghasilkan gamet pada manusia disebut meiosis."
+    },
+    {
+        question: "Di bagian manakah proses fertilisasi terjadi pada sistem reproduksi manusia?",
+        options: ["Ovarium", "Tuba falopi", "Rahim", "Vagina", "Vulva"],
+        correct: 1,
+        explanation: "Fertilisasi terjadi di tuba falopi, di mana sperma bertemu dengan sel telur."
+    },
+    {
+        question: "Apa nama hormon yang memicu ovulasi pada wanita?",
+        options: ["Progesteron", "Estrogen", "Luteinizing Hormone (LH)", "Follicle Stimulating Hormone (FSH)", "Prolaktin"],
+        correct: 2,
+        explanation: "Luteinizing Hormone (LH) memicu ovulasi, yaitu pelepasan sel telur dari ovarium."
+    },
+    {
+        question: "Apa yang terjadi pada wanita selama fase luteal dalam siklus menstruasi?",
+        options: ["Pematangan folikel", "Pelepasan telur", "Penebalan endometrium", "Pelepasan LH", "Pendarahan menstruasi"],
+        correct: 2,
+        explanation: "Pada fase luteal, tubuh mempersiapkan endometrium untuk kemungkinan kehamilan, dengan penebalan dinding rahim."
+    },
+    {
+        question: "Apa nama struktur yang menghubungkan ovarium dengan rahim?",
+        options: ["Tuba falopi", "Vagina", "Vulva", "Serviks", "Endometrium"],
+        correct: 0,
+        explanation: "Tuba falopi menghubungkan ovarium dengan rahim dan merupakan tempat terjadinya fertilisasi."
+    },
+    {
+        question: "Apa yang dimaksud dengan spermatogenesis?",
+        options: ["Proses pembentukan sperma", "Proses pembentukan sel telur", "Penyatuan sperma dan sel telur", "Proses pembentukan hormon seks", "Proses pembelahan sel"],
+        correct: 0,
+        explanation: "Spermatogenesis adalah proses pembentukan sperma pada pria."
+    },
+    {
+        question: "Bagaimana cara kerja kontrasepsi hormonal?",
+        options: ["Menghentikan ovulasi", "Meningkatkan produksi sperma", "Menebalkan dinding rahim", "Meningkatkan produksi estrogen", "Menghentikan menstruasi"],
+        correct: 0,
+        explanation: "Kontrasepsi hormonal bekerja dengan menghentikan ovulasi, sehingga tidak ada sel telur yang dapat dibuahi."
+    },
+    {
+        question: "Bagaimana cara kerja alat kontrasepsi IUD?",
+        options: ["Menghasilkan hormon progesteron", "Mencegah sperma mencapai sel telur", "Meningkatkan produksi sel telur", "Menstimulasi ovulasi", "Menebalkan serviks"],
+        correct: 1,
+        explanation: "IUD mencegah sperma mencapai sel telur dengan cara mengubah lingkungan dalam rahim."
+    },
+    {
+        question: "Di mana letak testis pada pria?",
+        options: ["Di dalam tubuh bagian dalam perut", "Di luar tubuh pada skrotum", "Di dalam rongga dada", "Di dalam prostat", "Di dalam uretra"],
+        correct: 1,
+        explanation: "Testis terletak di luar tubuh pada kantung skrotum untuk menjaga suhu yang lebih rendah daripada suhu tubuh untuk memproduksi sperma."
+    },
+    {
+        question: "Apa nama lapisan dalam rahim yang mengalami perubahan selama siklus menstruasi?",
+        options: ["Endometrium", "Myometrium", "Perimetrium", "Vagina", "Ovarium"],
+        correct: 0,
+        explanation: "Endometrium adalah lapisan dalam rahim yang mengalami perubahan tebal dan luruh selama siklus menstruasi."
+    },
+    {
+        question: "Apa yang dimaksud dengan fertilisasi eksternal?",
+        options: ["Fertilisasi yang terjadi di luar tubuh", "Fertilisasi yang terjadi di dalam tubuh", "Pertemuan sperma dengan sel telur dalam tuba falopi", "Proses pembuahan di dalam rahim", "Proses pembuahan melalui teknologi"],
+        correct: 0,
+        explanation: "Fertilisasi eksternal adalah pembuahan yang terjadi di luar tubuh, seperti pada beberapa jenis ikan dan amfibi."
+    },
+    {
+        question: "Apa yang terjadi pada pria yang mengalami vasektomi?",
+        options: ["Penghentian produksi sperma", "Menghentikan produksi hormon pria", "Pemblokiran saluran sperma", "Peningkatan jumlah sperma", "Penghentian produksi testosteron"],
+        correct: 2,
+        explanation: "Vasektomi adalah prosedur yang memblokir saluran sperma sehingga sperma tidak bisa keluar saat ejakulasi."
+    },
+    {
+        question: "Bagaimana cara kerja kontrasepsi pil?",
+        options: ["Menghentikan ovulasi", "Meningkatkan produksi sperma", "Meningkatkan pertumbuhan folikel", "Menurunkan kadar estrogen", "Meningkatkan produksi LH"],
+        correct: 0,
+        explanation: "Pil kontrasepsi bekerja dengan menghentikan ovulasi, sehingga tidak ada sel telur yang bisa dibuahi."
+    },
+    {
+        question: "Pada tahap mana dalam perkembangan embrio sel-sel mulai membentuk lapisan-lapisan germinal?",
+        options: ["Zigot", "Morula", "Blastula", "Gastrula", "Neurula"],
+        correct: 3,
+        explanation: "Pada tahap gastrula, sel-sel mulai membentuk lapisan germinal yang akan berkembang menjadi berbagai jenis jaringan tubuh."
+    },
+    {
+        question: "Apa yang dimaksud dengan endometriosis?",
+        options: ["Tumor pada ovarium", "Penyakit infeksi pada tuba falopi", "Tumbuhnya jaringan endometrium di luar rahim", "Penyakit pada serviks", "Penyumbatan tuba falopi"],
+        correct: 2,
+        explanation: "Endometriosis adalah kondisi di mana jaringan yang biasanya melapisi rahim tumbuh di luar rahim, yang dapat menyebabkan rasa sakit."
+    },
+    {
+        question: "Apa nama hormon utama yang diproduksi oleh testis?",
+        options: ["Testosteron", "Progesteron", "Estrogen", "Prolaktin", "Luteinizing Hormone (LH)"],
+        correct: 0,
+        explanation: "Testosteron adalah hormon utama yang diproduksi oleh testis dan bertanggung jawab untuk perkembangan karakteristik seksual pria."
+    },
+    {
+        question: "Apa nama fase pertama dalam siklus menstruasi?",
+        options: ["Fase luteal", "Fase folikuler", "Fase ovulasi", "Fase menstruasi", "Fase proliferasi"],
+        correct: 1,
+        explanation: "Fase folikuler adalah fase pertama dalam siklus menstruasi di mana folikel di ovarium mulai berkembang."
+    },
+    {
+        question: "Apa fungsi dari kelenjar prostat pada sistem reproduksi pria?",
+        options: ["Produksi sperma", "Produksi hormon testosteron", "Menghasilkan cairan yang melindungi sperma", "Menampung sperma", "Menstimulasi produksi ovum"],
+        correct: 2,
+        explanation: "Kelenjar prostat menghasilkan cairan yang melindungi dan memberi nutrisi pada sperma."
+    },
+    {
+        question: "Apa yang dimaksud dengan proses ovulasi?",
+        options: ["Pelepasan sel telur dari ovarium", "Pemecahan folikel", "Pelepasan hormon LH", "Penebalan endometrium", "Pembentukan korpus luteum"],
+        correct: 0,
+        explanation: "Ovulasi adalah proses pelepasan sel telur dari ovarium yang terjadi di tengah siklus menstruasi."
+    },
+    {
+        question: "Pada wanita, hormon apa yang berperan dalam menjaga kehamilan?",
+        options: ["Estrogen", "Testosteron", "Progesteron", "Luteinizing Hormone (LH)", "Prolaktin"],
+        correct: 2,
+        explanation: "Progesteron berperan penting dalam menjaga kehamilan dengan menyiapkan endometrium untuk menerima embrio."
+    }
+];
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
