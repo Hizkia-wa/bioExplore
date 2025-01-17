@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out Sistem Organisasi</title>
+    <link rel="stylesheet" href="../css/TOya.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Try Out Sistem Organisasi</h1>
+            <div class="timer" id="timer">Sisa Waktu: 10:00</div>
+        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">BIOEXPLORE</div>
+      <ul class="nav-links">
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="materi">Materi</a></li>
+          <li><a href="video">Video Pembelajaran</a></li>
+          <li class="dropdown">
+              <a href="#">Bank Soal</a>
+              <ul class="dropdown-menu">
+                  <li><a href="kuis.html">Soal Latihan</a></li>
+                  <li><a href="tryout.html">Try Out</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+        <main>
+            <div class="question-card" id="question-card">
+                <h2 id="question-number">Soal 1</h2>
+                <p id="question-text">Apa itu Sistem Operasi?</p>
+
+                <div class="options" id="options">
+                    <button class="option">Software</button>
+                    <button class="option">Hardware</button>
+                    <button class="option">User</button>
+                    <button class="option">Database</button>
+                    <button class="option">Network</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prev-btn" disabled>Sebelumnya</button>
+                <button id="next-btn">Selanjutnya</button>
+                <button id="finish-btn">Selesai</button>
+            </div>
+        </main>
+
+        <div class="question-map" id="question-map">
+            <!-- Kotak soal akan diisi dengan JavaScript -->
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Hasil Try Out</h2>
+            <div id="score"></div>
+            <h3>Pembahasan:</h3>
+            <div id="explanations"></div>
+        </div>
+    </div>
+
+    <script>
+const questions = [
+    {
+        question: "Apa yang dimaksud dengan sistem muskuloskeletal pada manusia?",
+        options: ["Sistem otot dan tulang", "Sistem saraf dan otak", "Sistem pencernaan", "Sistem kardiovaskular", "Sistem limfatik"],
+        correct: 0,
+        explanation: "Sistem muskuloskeletal terdiri dari otot dan tulang yang berfungsi untuk memberikan dukungan dan memungkinkan pergerakan tubuh."
+    },
+    {
+        question: "Apa fungsi utama dari sistem otot manusia?",
+        options: ["Menghasilkan energi", "Melindungi organ internal", "Melakukan gerakan tubuh", "Menyaring racun", "Menyimpan cadangan darah"],
+        correct: 2,
+        explanation: "Sistem otot memungkinkan tubuh untuk melakukan gerakan dan mengontrol posisi tubuh."
+    },
+    {
+        question: "Apa yang dimaksud dengan kontraksi otot isometrik?",
+        options: ["Kontraksi otot tanpa perubahan panjang otot", "Kontraksi otot yang mengurangi panjang otot", "Kontraksi otot yang menambah panjang otot", "Proses pengenduran otot", "Proses pergerakan sendi"],
+        correct: 0,
+        explanation: "Kontraksi otot isometrik terjadi ketika otot berkontraksi tanpa terjadi perubahan panjang otot, seperti saat mendorong dinding."
+    },
+    {
+        question: "Bagaimana otot polos berperan dalam sistem peredaran darah?",
+        options: ["Menyediakan gerakan sukarela untuk organ tubuh", "Menggerakkan darah melalui pembuluh darah", "Menghasilkan impuls listrik", "Mengontrol gerakan sendi", "Menyaring darah"],
+        correct: 1,
+        explanation: "Otot polos membantu menggerakkan darah melalui pembuluh darah, terutama di pembuluh darah yang lebih kecil."
+    },
+    {
+        question: "Apa yang dimaksud dengan sindrom terowongan karpal?",
+        options: ["Penyakit saraf yang terjadi akibat tekanan pada saraf medianus di pergelangan tangan", "Penyakit yang disebabkan oleh kekurangan kalsium", "Penyakit jantung yang disebabkan oleh tekanan darah tinggi", "Gangguan otot pada kaki", "Gangguan pada persendian lutut"],
+        correct: 0,
+        explanation: "Sindrom terowongan karpal terjadi ketika saraf medianus tertekan di pergelangan tangan, menyebabkan rasa sakit dan kelemahan pada tangan dan jari."
+    },
+    {
+        question: "Apa yang dimaksud dengan sendi ball-and-socket?",
+        options: ["Sendi yang memungkinkan gerakan bebas dalam berbagai arah", "Sendi yang hanya memungkinkan gerakan putar", "Sendi yang hanya memungkinkan gerakan satu arah", "Sendi yang terbentuk antara dua tulang datar", "Sendi yang tidak memungkinkan pergerakan"],
+        correct: 0,
+        explanation: "Sendi ball-and-socket seperti sendi panggul dan sendi bahu memungkinkan gerakan bebas dalam banyak arah."
+    },
+    {
+        question: "Bagaimana proses pergerakan otot terjadi?",
+        options: ["Melalui kontraksi serabut otot yang menyebabkan pergeseran sendi", "Melalui aktivitas kimia yang tidak mempengaruhi sendi", "Dengan cara menghasilkan gelombang listrik", "Dengan menghubungkan tulang ke saraf", "Dengan mengurangi panjang serabut otot"],
+        correct: 0,
+        explanation: "Pergerakan otot terjadi melalui kontraksi otot, yang menyebabkan pergeseran atau perubahan posisi pada sendi."
+    },
+    {
+        question: "Apa itu otot skeletal?",
+        options: ["Otot yang bekerja tanpa kontrol sadar", "Otot yang terhubung ke tulang dan dapat dikendalikan secara sadar", "Otot yang hanya ditemukan di jantung", "Otot yang ditemukan di saluran pencernaan", "Otot yang tidak dapat dilatih"],
+        correct: 1,
+        explanation: "Otot skeletal adalah otot yang terhubung ke tulang dan dikendalikan secara sadar oleh sistem saraf."
+    },
+    {
+        question: "Apa yang dimaksud dengan elastisitas otot?",
+        options: ["Kemampuan otot untuk kembali ke panjang semula setelah meregang", "Kemampuan otot untuk berkontraksi", "Kemampuan otot untuk membesar", "Kemampuan otot untuk menghasilkan impuls listrik", "Kemampuan otot untuk menghentikan pergerakan"],
+        correct: 0,
+        explanation: "Elastisitas otot adalah kemampuan otot untuk kembali ke panjang semula setelah diregangkan."
+    },
+    {
+        question: "Manakah dari berikut ini yang merupakan jenis sendi yang tidak memungkinkan pergerakan?",
+        options: ["Sendi sinartrosis", "Sendi ball-and-socket", "Sendi pelana", "Sendi putar", "Sendi condylar"],
+        correct: 0,
+        explanation: "Sendi sinartrosis adalah sendi yang tidak memungkinkan pergerakan, seperti sendi pada tengkorak."
+    },
+    {
+        question: "Apakah fungsi utama dari ligamen dalam sistem gerak manusia?",
+        options: ["Menghubungkan otot dengan tulang", "Menghubungkan tulang dengan tulang", "Menjaga keseimbangan tubuh", "Memberikan energi untuk kontraksi otot", "Menyaring kotoran dalam darah"],
+        correct: 1,
+        explanation: "Ligamen menghubungkan tulang dengan tulang dan memberikan stabilitas pada sendi."
+    },
+    {
+        question: "Bagaimana tubuh kita mengatur suhu saat berolahraga?",
+        options: ["Dengan meningkatkan produksi hormon adrenalin", "Dengan memperlambat detak jantung", "Dengan meningkatkan produksi keringat dan vasodilatasi", "Dengan mengurangi peredaran darah", "Dengan mengurangi penggunaan otot"],
+        correct: 2,
+        explanation: "Tubuh mengatur suhu dengan meningkatkan produksi keringat dan melebarkan pembuluh darah untuk melepaskan panas."
+    },
+    {
+        question: "Apa yang dimaksud dengan otot antagonis?",
+        options: ["Otot yang bekerja secara bersamaan untuk menghasilkan gerakan", "Otot yang bekerja berlawanan arah untuk mengontrol gerakan sendi", "Otot yang hanya bergerak satu arah", "Otot yang tidak bisa dikendalikan", "Otot yang tidak bisa berkontraksi"],
+        correct: 1,
+        explanation: "Otot antagonis bekerja berlawanan arah untuk mengontrol dan menyeimbangkan gerakan sendi."
+    },
+    {
+        question: "Bagaimana tulang dapat berfungsi untuk melindungi organ tubuh?",
+        options: ["Dengan memberikan cadangan energi", "Dengan membentuk pelindung fisik untuk organ vital", "Dengan menghasilkan sel darah merah", "Dengan memompa darah", "Dengan memproduksi hormon"],
+        correct: 1,
+        explanation: "Tulang memberikan pelindung fisik untuk organ tubuh yang vital, seperti tengkorak yang melindungi otak."
+    },
+    {
+        question: "Apa yang dimaksud dengan jenis otot jantung?",
+        options: ["Otot yang dapat dikendalikan secara sadar", "Otot yang bekerja tanpa kontrol sadar dan ditemukan di jantung", "Otot yang hanya ada di saluran pencernaan", "Otot yang hanya bekerja dalam keadaan tidur", "Otot yang tidak pernah berkontraksi"],
+        correct: 1,
+        explanation: "Otot jantung adalah otot yang bekerja secara otomatis tanpa kontrol sadar dan hanya ditemukan di jantung."
+    },
+    {
+        question: "Bagaimana tulang dapat tumbuh sepanjang kehidupan manusia?",
+        options: ["Dengan memperbesar diameter tulang", "Dengan regenerasi jaringan otot", "Melalui proses endokondral dan intramembranous ossification", "Dengan menambah berat tulang", "Dengan mengurangi kepadatan tulang"],
+        correct: 2,
+        explanation: "Tulang tumbuh melalui proses osifikasi yang melibatkan penggantian kartilago dengan jaringan tulang pada masa pertumbuhan."
+    },
+    {
+        question: "Apa yang dimaksud dengan osteogenesis imperfecta?",
+        options: ["Kondisi kelainan genetik yang menyebabkan tulang rapuh", "Kelainan pada otot", "Kondisi di mana otot tidak dapat berkontraksi", "Gangguan pada sistem pencernaan", "Kondisi yang menyebabkan kelebihan tulang"],
+        correct: 0,
+        explanation: "Osteogenesis imperfecta adalah kelainan genetik yang menyebabkan tulang menjadi sangat rapuh dan mudah patah."
+    },
+    {
+        question: "Bagaimana gerakan tubuh dikendalikan oleh sistem saraf?",
+        options: ["Melalui impuls listrik yang ditransmisikan ke otot", "Dengan pergerakan otomatis organ tubuh", "Dengan mengatur metabolisme tubuh", "Dengan menghentikan gerakan tubuh secara fisik", "Dengan mengendalikan suhu tubuh"],
+        correct: 0,
+        explanation: "Sistem saraf mengirimkan impuls listrik ke otot untuk mengatur gerakan tubuh melalui kontrol sadar dan tidak sadar."
+    },
+    {
+        question: "Apa yang dimaksud dengan tendinitis?",
+        options: ["Peradangan pada sendi", "Penyakit jantung", "Peradangan pada ligamen", "Peradangan pada tendon", "Peradangan pada tulang"],
+        correct: 3,
+        explanation: "Tendinitis adalah peradangan pada tendon yang dapat terjadi akibat penggunaan berlebihan atau cedera."
+    },
+    {
+        question: "Apa yang terjadi jika otot tidak mendapatkan cukup oksigen saat berolahraga?",
+        options: ["Otot akan melakukan respirasi anaerobik", "Otot akan tetap menghasilkan energi secara normal", "Otot akan mengalami kekakuan permanen", "Otot akan berkontraksi lebih kuat", "Otot akan berhenti bergerak"],
+        correct: 0,
+        explanation: "Ketika otot tidak mendapatkan cukup oksigen, otot akan beralih ke respirasi anaerobik untuk menghasilkan energi, yang dapat menghasilkan asam laktat."
+    },
+    {
+        question: "Apa yang dimaksud dengan sistem gerak manusia secara keseluruhan?",
+        options: ["Jaringan otot dan saraf yang mengendalikan organ tubuh", "Jaringan tulang dan sendi yang mendukung tubuh", "Sistem saraf yang menghubungkan tubuh dengan pikiran", "Sistem muskuloskeletal yang menggabungkan otot dan tulang untuk bergerak", "Sistem pencernaan yang mempengaruhi energi tubuh"],
+        correct: 3,
+        explanation: "Sistem gerak manusia terdiri dari otot dan tulang yang bekerja sama untuk menghasilkan pergerakan tubuh."
+    }
+];
+
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let timeLeft = 600; // 10 menit dalam detik
+        let timerInterval; // Simpan interval timer
+
+        const timerElement = document.getElementById('timer');
+        const questionCard = document.getElementById('question-card');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const questionMap = document.getElementById('question-map');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Sisa Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                finishTO();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerElement.style.display = 'none'; // Sembunyikan timer
+        }
+
+        function renderQuestion(index) {
+            const question = questions[index];
+            questionNumber.textContent = `Soal ${index + 1}`;
+            questionText.textContent = question.question;
+
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, i) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option';
+                if (answers[index] === i) button.classList.add('selected');
+                button.addEventListener('click', () => handleAnswer(i));
+                optionsContainer.appendChild(button);
+            });
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+        }
+
+        function handleAnswer(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            renderQuestion(currentQuestion);
+            renderQuestionMap();
+        }
+
+        function navigateQuestion(index) {
+            currentQuestion = index;
+            renderQuestion(index);
+        }
+
+        function renderQuestionMap() {
+            questionMap.innerHTML = '';
+            questions.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.textContent = index + 1;
+                button.className = 'question-box';
+                if (answers[index] !== null) button.classList.add('answered');
+                button.addEventListener('click', () => navigateQuestion(index));
+                questionMap.appendChild(button);
+            });
+        }
+
+        function finishTO() {
+            stopTimer(); // Hentikan timer dan sembunyikan
+
+            const resultContainer = document.getElementById('result');
+            const scoreContainer = document.getElementById('score');
+            const explanationsContainer = document.getElementById('explanations');
+            let score = 0;
+
+            // Hitung skor
+            questions.forEach((question, index) => {
+                if (answers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            // Tampilkan skor
+            scoreContainer.textContent = `Skor Anda: ${score} dari ${questions.length}`;
+
+            // Tampilkan pembahasan
+            explanationsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <p><strong>Soal ${index + 1}: ${question.question}</strong></p>
+                    <p>Jawaban Anda: ${answers[index] !== null ? question.options[answers[index]] : 'Tidak dijawab'}</p>
+                    <p>Jawaban Benar: ${question.options[question.correct]}</p>
+                    <p>Pembahasan: ${question.explanation}</p>
+                `;
+                explanationsContainer.appendChild(explanationDiv);
+            });
+
+            // Sembunyikan soal, tampilkan hasil
+            document.querySelector('main').style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) navigateQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) navigateQuestion(currentQuestion + 1);
+        });
+
+        finishBtn.addEventListener('click', finishTO);
+
+        renderQuestion(currentQuestion);
+        renderQuestionMap();
+        startTimer();
+    </script>
+</body>
+</html>
